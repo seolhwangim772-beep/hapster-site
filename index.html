@@ -1,0 +1,217 @@
+<title>HAPSTER RUN &amp; RAVE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* 레이아웃: 한 줄 세로 스크롤. 히어로에 레벨미터 한 덩어리, 나머지는 조용하게 */
+:root{
+  --ink:#0A0B0C; --ink2:#131619; --ink3:#1B1F23;
+  --lime:#CCFF00; --fg:#F1F3F4; --mut:#8C949C; --line:rgba(241,243,244,.13);
+  --disp:"Archivo","Noto Sans KR",system-ui,sans-serif;
+  --body:"Noto Sans KR","Archivo",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--body);
+     font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+.w{max-width:960px;margin-inline:auto;
+   padding-left:max(20px,env(safe-area-inset-left,0px));
+   padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,9vw,104px)}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:900;letter-spacing:-.02em}
+p{margin:0}
+.lime{color:var(--lime)}
+.eyebrow{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.18em;
+         text-transform:uppercase;color:var(--mut)}
+
+/* ── 히어로 ── */
+.hero{padding-block:clamp(44px,7vw,80px) clamp(44px,7vw,76px);border-bottom:1px solid var(--line)}
+.mark{display:flex;flex-direction:column;align-items:flex-start;gap:16px;margin-top:18px}
+.logo{width:clamp(168px,30vw,268px);max-width:100%;height:auto;display:block}
+.mark span{font-family:var(--body);font-weight:700;font-size:clamp(13px,2.2vw,15px);
+           letter-spacing:.22em;color:var(--mut)}
+.tag{margin-top:26px;font-size:clamp(21px,4.4vw,32px);font-weight:900;line-height:1.35;
+     letter-spacing:-.02em;max-width:17ch}
+.lede{margin-top:18px;color:var(--mut);font-size:clamp(15px,2.4vw,17px);max-width:46ch}
+
+/* 레벨미터 */
+.meter{display:flex;align-items:flex-end;gap:4px;height:84px;margin-top:34px;
+       max-width:420px;opacity:.95}
+.meter i{flex:1;background:linear-gradient(180deg,var(--lime),#6E8A00);border-radius:2px;
+         transform-origin:bottom;animation:bob 1.15s ease-in-out infinite alternate}
+@keyframes bob{from{height:12%}to{height:100%}}
+@media (prefers-reduced-motion:reduce){.meter i{animation:none}}
+
+/* ── 버튼 ── */
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;flex-direction:column;gap:2px;text-decoration:none;
+     padding:15px 26px;border-radius:10px;min-width:214px;
+     font-family:var(--body);transition:transform .14s ease,background .14s ease}
+.btn strong{font-size:16px;font-weight:900;letter-spacing:-.01em}
+.btn span{font-size:12.5px;font-weight:500;opacity:.72}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.b1{background:var(--lime);color:#0A0B0C}
+.b1:hover{background:#DBFF3D}
+.b2{background:var(--ink3);color:var(--fg);border:1px solid var(--line)}
+.b2:hover{background:#242930}
+.off{opacity:.42;cursor:default;pointer-events:none}
+.off:hover{background:var(--ink3)}
+.free{margin-top:16px;font-size:13.5px;color:var(--mut)}
+
+
+/* ── 큐알 ── */
+.qrwrap{display:flex;flex-wrap:wrap;gap:26px;align-items:center;margin-top:34px;
+        padding:26px;background:var(--ink2);border:1px solid var(--line);border-radius:14px}
+.qr{flex:none;width:168px;height:168px;background:#fff;border-radius:10px;padding:10px}
+.qr svg{display:block;width:100%;height:100%}
+.qrtxt{min-width:0;flex:1 1 260px}
+.qrtxt h3{font-size:19px;margin-bottom:8px}
+.qrtxt p{color:var(--mut);font-size:15px}
+.qrtxt b{color:var(--fg);font-weight:700}
+
+/* ── 3단 ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:2px;
+      margin-top:34px;background:var(--line);border:1px solid var(--line);border-radius:12px;
+      overflow:hidden}
+.cell{background:var(--ink2);padding:28px 26px;min-width:0}
+.cell h3{font-size:19px;margin-bottom:9px}
+.cell p{color:var(--mut);font-size:15px}
+
+/* ── 단계 ── */
+.steps{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:2px;
+       background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.steps li{background:var(--ink2);padding:22px 26px;display:flex;gap:20px;align-items:baseline;min-width:0}
+.steps b{font-family:var(--disp);font-weight:900;font-size:15px;color:var(--lime);
+         letter-spacing:.06em;flex:none;width:28px}
+.steps div{min-width:0}
+.steps strong{display:block;font-weight:900;font-size:17px;letter-spacing:-.01em}
+.steps p{color:var(--mut);font-size:14.5px;margin-top:4px}
+
+/* ── 인용 ── */
+.pull{margin-top:34px;padding:30px 28px;background:var(--ink2);border-radius:12px;
+      border-left:3px solid var(--lime)}
+.pull q{display:block;font-size:clamp(18px,3.2vw,24px);font-weight:900;line-height:1.5;
+        letter-spacing:-.015em;quotes:"“" "”"}
+.pull cite{display:block;margin-top:12px;font-style:normal;font-size:13.5px;color:var(--mut)}
+
+/* ── 마무리 ── */
+.end{border-top:1px solid var(--line);background:var(--ink2)}
+.end h2{font-size:clamp(24px,4.6vw,38px)}
+.contact{margin-top:38px;padding-top:24px;border-top:1px solid var(--line);
+         display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline;
+         font-size:13.5px;color:var(--mut)}
+.contact a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.contact a:hover{color:var(--lime);border-color:var(--lime)}
+footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mut)}
+</style>
+
+<header class="hero">
+  <div class="w">
+    <p class="eyebrow">베타 테스트 · 크루장 초대</p>
+    <h1 class="mark">
+      <img class="logo" src="logo.png" alt="HAPSTER RUN &amp; RAVE" width="1200" height="1086">
+      <span>햅스터 런앤레이브</span>
+    </h1>
+
+    <div class="meter" aria-hidden="true">
+      <i style="animation-delay:-.05s"></i><i style="animation-delay:-.41s"></i>
+      <i style="animation-delay:-.77s"></i><i style="animation-delay:-.19s"></i>
+      <i style="animation-delay:-.63s"></i><i style="animation-delay:-.31s"></i>
+      <i style="animation-delay:-.88s"></i><i style="animation-delay:-.11s"></i>
+      <i style="animation-delay:-.52s"></i><i style="animation-delay:-.70s"></i>
+      <i style="animation-delay:-.26s"></i><i style="animation-delay:-.94s"></i>
+      <i style="animation-delay:-.38s"></i><i style="animation-delay:-.58s"></i>
+      <i style="animation-delay:-.08s"></i><i style="animation-delay:-.82s"></i>
+      <i style="animation-delay:-.46s"></i><i style="animation-delay:-.23s"></i>
+    </div>
+
+    <p class="tag">러닝에 파티를 얹다.<br><span class="lime">크루장이 디제이가 된다.</span></p>
+    <p class="lede">크루 전원이 같은 곡을 같은 순간에 듣고, 그 위로 크루장의 멘트가 얹힙니다.
+      500미터 떨어져 있어도 선두부터 후미까지 한 번에 닿습니다.</p>
+
+    <div class="cta">
+      <!-- ★ 주소 두 곳만 바꾸면 됩니다 -->
+      <a class="btn b1" href="https://hapster.kr/hapster.apk">
+        <strong>안드로이드 바로 설치</strong><span>APK 내려받기 · 설치 안내 포함</span></a>
+      <span class="btn b2 off">
+        <strong>아이폰 · 준비 중</strong><span>곧 TestFlight 초대가 열립니다</span></span>
+    </div>
+    <p class="free">베타 기간 동안 <span class="lime">무료</span>로 이용하실 수 있습니다.</p>
+    <div class="qrwrap">
+      <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges" role="img" aria-label="hapster.kr QR 코드"><rect width="33" height="33" fill="#fff"/><path fill="#0A0B0C" d="M2 2h7v1h-7zM10 2h2v1h-2zM13 2h1v1h-1zM15 2h1v1h-1zM24 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h3v1h-3zM14 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM30 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h5v1h-5zM20 4h1v1h-1zM24 4h1v1h-1zM26 4h3v1h-3zM30 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM13 5h2v1h-2zM17 5h1v1h-1zM19 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h3v1h-3zM30 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM11 6h1v1h-1zM18 6h2v1h-2zM21 6h2v1h-2zM24 6h1v1h-1zM26 6h3v1h-3zM30 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h2v1h-2zM16 7h1v1h-1zM19 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM30 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h7v1h-7zM10 9h2v1h-2zM13 9h3v1h-3zM18 9h3v1h-3zM4 10h3v1h-3zM8 10h1v1h-1zM10 10h5v1h-5zM17 10h2v1h-2zM23 10h3v1h-3zM28 10h3v1h-3zM3 11h2v1h-2zM7 11h1v1h-1zM9 11h1v1h-1zM12 11h3v1h-3zM18 11h3v1h-3zM22 11h2v1h-2zM26 11h2v1h-2zM30 11h1v1h-1zM4 12h3v1h-3zM8 12h1v1h-1zM11 12h1v1h-1zM13 12h2v1h-2zM16 12h2v1h-2zM21 12h1v1h-1zM23 12h2v1h-2zM27 12h1v1h-1zM4 13h1v1h-1zM6 13h1v1h-1zM10 13h2v1h-2zM14 13h1v1h-1zM17 13h2v1h-2zM21 13h4v1h-4zM26 13h2v1h-2zM29 13h1v1h-1zM5 14h4v1h-4zM10 14h3v1h-3zM14 14h2v1h-2zM17 14h5v1h-5zM23 14h1v1h-1zM25 14h1v1h-1zM27 14h4v1h-4zM2 15h1v1h-1zM5 15h3v1h-3zM9 15h2v1h-2zM12 15h2v1h-2zM15 15h1v1h-1zM18 15h1v1h-1zM21 15h4v1h-4zM26 15h2v1h-2zM29 15h2v1h-2zM5 16h1v1h-1zM7 16h2v1h-2zM11 16h4v1h-4zM19 16h1v1h-1zM23 16h1v1h-1zM25 16h1v1h-1zM3 17h4v1h-4zM10 17h2v1h-2zM13 17h2v1h-2zM16 17h1v1h-1zM18 17h1v1h-1zM23 17h1v1h-1zM26 17h2v1h-2zM29 17h1v1h-1zM4 18h3v1h-3zM8 18h1v1h-1zM11 18h3v1h-3zM16 18h1v1h-1zM18 18h6v1h-6zM25 18h1v1h-1zM27 18h2v1h-2zM2 19h2v1h-2zM9 19h2v1h-2zM13 19h2v1h-2zM16 19h1v1h-1zM18 19h2v1h-2zM23 19h1v1h-1zM25 19h2v1h-2zM29 19h2v1h-2zM2 20h1v1h-1zM4 20h2v1h-2zM7 20h2v1h-2zM10 20h1v1h-1zM12 20h2v1h-2zM15 20h1v1h-1zM18 20h1v1h-1zM22 20h1v1h-1zM24 20h2v1h-2zM28 20h1v1h-1zM2 21h1v1h-1zM4 21h3v1h-3zM9 21h4v1h-4zM16 21h5v1h-5zM24 21h1v1h-1zM29 21h2v1h-2zM2 22h1v1h-1zM4 22h1v1h-1zM7 22h3v1h-3zM11 22h1v1h-1zM13 22h3v1h-3zM17 22h4v1h-4zM22 22h5v1h-5zM28 22h2v1h-2zM10 23h2v1h-2zM15 23h1v1h-1zM19 23h1v1h-1zM22 23h1v1h-1zM26 23h2v1h-2zM30 23h1v1h-1zM2 24h7v1h-7zM12 24h11v1h-11zM24 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM13 25h3v1h-3zM18 25h1v1h-1zM21 25h2v1h-2zM26 25h2v1h-2zM30 25h1v1h-1zM2 26h1v1h-1zM4 26h3v1h-3zM8 26h1v1h-1zM10 26h2v1h-2zM17 26h2v1h-2zM22 26h8v1h-8zM2 27h1v1h-1zM4 27h3v1h-3zM8 27h1v1h-1zM10 27h2v1h-2zM13 27h3v1h-3zM20 27h4v1h-4zM25 27h1v1h-1zM27 27h2v1h-2zM2 28h1v1h-1zM4 28h3v1h-3zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM21 28h6v1h-6zM28 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM13 29h1v1h-1zM16 29h3v1h-3zM20 29h1v1h-1zM24 29h1v1h-1zM26 29h2v1h-2zM29 29h1v1h-1zM2 30h7v1h-7zM11 30h1v1h-1zM13 30h1v1h-1zM18 30h1v1h-1zM20 30h5v1h-5zM26 30h1v1h-1zM28 30h1v1h-1z"/></svg></div>
+      <div class="qrtxt">
+        <h3>크루원에게는 이 큐알 하나면 됩니다</h3>
+        <p>크루방에 이 화면을 올리거나 큐알만 찍어 보내세요.
+           크루원이 찍으면 바로 이 페이지로 들어와 각자 폰에 맞는 걸 받습니다.
+           설치 뒤에는 <b>코드 여섯 자리</b>만 넣으면 크루에 들어옵니다.</p>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<section>
+  <div class="w">
+    <p class="eyebrow">무엇이 달라지나</p>
+    <h2 style="font-size:clamp(23px,4.4vw,34px);margin-top:10px">그냥 음악만 들을 때와<br>완전히 다른 러닝</h2>
+    <div class="grid">
+      <div class="cell"><h3>디제이가 얹힌다</h3>
+        <p>각자 듣던 음악 위로 크루장의 목소리가 올라갑니다. 독려하고, 위로하고, 페이스를 잡아줍니다.</p></div>
+      <div class="cell"><h3>라이브톡</h3>
+        <p>달리는 중에 크루원들과 실시간으로 주고받습니다. 숨이 차도 버튼 하나면 전원에게 닿습니다.</p></div>
+      <div class="cell"><h3>퀵 브로드캐스트</h3>
+        <p>“잠깐 쉬었다 가요”, “조금만 천천히 가요”. 자주 쓰는 말은 누르기만 하면 크루 전원에게 갑니다.</p></div>
+      <div class="cell"><h3>전방주의 · 후방주의</h3>
+        <p>선두와 후미에 각각 다른 안내를 보냅니다. 무리가 길어져도 흩어지지 않습니다.</p></div>
+      <div class="cell"><h3>내 목소리로 디제잉</h3>
+        <p>크루장 목소리를 그대로 디제이로 쓸 수 있습니다. 우리 크루만의 러닝이 됩니다.</p></div>
+      <div class="cell"><h3>폴라로이드 기록</h3>
+        <p>러닝이 끝나면 기록과 한마디가 폴라로이드 한 장으로 남습니다. 그대로 크루방에 올리세요.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="w">
+    <p class="eyebrow">시작하는 법</p>
+    <h2 style="font-size:clamp(23px,4.4vw,34px);margin-top:10px">코드 여섯 자리면 끝</h2>
+    <ol class="steps">
+      <li><b>01</b><div><strong>크루장이 방을 만든다</strong>
+        <p>거리·페이스·디제이를 고르고 방을 엽니다. 앱에서 크루 이름을 등록하면 디제이가 그 이름을 부릅니다.</p></div></li>
+      <li><b>02</b><div><strong>크루원은 코드 여섯 자리를 넣는다</strong>
+        <p>QR을 찍거나 코드를 입력하면 바로 들어옵니다. 따로 가입 절차를 밟을 필요가 없습니다.</p></div></li>
+      <li><b>03</b><div><strong>출발</strong>
+        <p>각자 폰에서 음악이 동시에 켜지고, 그 위로 디제이가 얹힙니다. 끝나면 모두에게 기록이 남습니다.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="w">
+    <div class="pull">
+      <q>크루장님, 러닝이 너무 재밌고 이거 진짜 미쳤어요!!</q>
+      <cite>베타 테스트에 참여한 크루원</cite>
+    </div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="w">
+    <p class="eyebrow">크루장님께</p>
+    <h2 style="margin-top:10px">모두가 기다렸던 단 하나의 레이브 러닝.<br>
+      그 <span class="lime">첫 번째 크루</span>로 당신의 크루를 초대합니다.</h2>
+    <div class="cta">
+      <a class="btn b1" href="https://hapster.kr/hapster.apk">
+        <strong>안드로이드 바로 설치</strong><span>APK 내려받기</span></a>
+      <span class="btn b2 off">
+        <strong>아이폰 · 준비 중</strong><span>곧 TestFlight 초대가 열립니다</span></span>
+    </div>
+    <div class="contact">
+      <span>문의 · 크루 등록 안내</span>
+      <a href="https://www.youtube.com/@HAPSTERRUNRAVE">@HAPSTERRUNRAVE</a>
+      <span>tbic@tbickorea.com</span>
+    </div>
+  </div>
+</section>
+
+<footer><div class="w">주식회사 티비아이씨 · 서울특별시 강남구 테헤란로84길 14, 5층 · 통신판매업신고 제2026-서울강남-02431호</div></footer>
