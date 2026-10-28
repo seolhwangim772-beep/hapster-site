@@ -103,6 +103,7 @@ p{margin:0}
 .qrtxt h3{font-size:19px;margin-bottom:8px}
 .qrtxt p{color:var(--mut);font-size:15px}
 .qrtxt b{color:var(--fg);font-weight:700}
+/* .qrdl 은 스타일이 아니라 클릭 집계용 훅이다 — 모양은 .btn.b2 를 그대로 쓴다 */
 
 /* ── 3단 ── */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:2px;
@@ -140,6 +141,16 @@ p{margin:0}
 footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mut)}
 </style>
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BXJRZP0E0L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BXJRZP0E0L');
+</script>
+
+
 <header class="hero">
   <div class="w">
    <div class="heroL">
@@ -173,7 +184,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
       </div>
     </div>
     <div class="cta">
-      <a class="btn b2" href="hapster-qr.png" download="hapster-qr.png">
+      <a class="btn b2 qrdl" href="hapster-qr.png" download="hapster-qr.png">
         <strong>큐알 이미지 저장</strong></a>
     </div>
 
@@ -246,3 +257,18 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 </section>
 
 <footer><div class="w">주식회사 티비아이씨 · 서울특별시 강남구 테헤란로84길 14, 5층 · 통신판매업신고 제2026-서울강남-02431호</div></footer>
+
+<script>
+// 어느 버튼을 눌렀는지 센다
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a, .btn');
+  if (!a) return;
+  var href = a.getAttribute('href') || '';
+  var name = null;
+  if (href.indexOf('.apk') > -1)              name = 'download_android';
+  else if (href.indexOf('testflight') > -1)   name = 'download_ios';
+  else if (a.classList.contains('qrdl'))      name = 'save_qr';
+  else if (href.indexOf('youtube.com') > -1)  name = 'open_youtube';
+  if (name && typeof gtag === 'function') gtag('event', name);
+}, true);
+</script>
