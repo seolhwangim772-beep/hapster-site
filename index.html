@@ -28,21 +28,52 @@ p{margin:0}
          text-transform:uppercase;color:var(--mut)}
 
 /* ── 히어로 ── */
-.hero{padding-block:clamp(44px,7vw,80px) clamp(44px,7vw,76px);border-bottom:1px solid var(--line)}
+.hero{position:relative;isolation:isolate;overflow:hidden;
+      padding-block:clamp(56px,8vw,104px) clamp(52px,8vw,96px);
+      border-bottom:1px solid var(--line)}
+/* 러닝 사진 — 오른쪽에서 스르르 번져 배경이 된다 */
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;
+      background:url(hero.jpg) right 28%/cover no-repeat;
+      filter:saturate(.96) contrast(1.05)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+      linear-gradient(90deg, #0A0B0C 0%, #0A0B0C 30%, rgba(10,11,12,.90) 42%,
+                             rgba(10,11,12,.52) 56%, rgba(10,11,12,.16) 76%,
+                             rgba(10,11,12,.30) 100%),
+      linear-gradient(180deg, #0A0B0C 0%, rgba(10,11,12,0) 20%,
+                              rgba(10,11,12,0) 66%, #0A0B0C 100%)}
+.hero>.w{position:relative;z-index:2}
+.heroL{max-width:30rem}
+@media (max-width:820px){
+  .hero::before{background-position:66% 24%}
+  .hero::after{background:
+      linear-gradient(90deg, rgba(10,11,12,.96) 0%, rgba(10,11,12,.86) 46%,
+                             rgba(10,11,12,.52) 78%, rgba(10,11,12,.58) 100%),
+      linear-gradient(180deg, #0A0B0C 0%, rgba(10,11,12,.10) 22%,
+                              rgba(10,11,12,.10) 60%, #0A0B0C 100%)}
+}
+
 .mark{display:flex;flex-direction:column;align-items:flex-start;gap:16px;margin-top:18px}
-.logo{width:clamp(168px,30vw,268px);max-width:100%;height:auto;display:block}
+.logo{width:clamp(168px,22vw,248px);max-width:100%;height:auto;display:block}
 .mark span{font-family:var(--body);font-weight:700;font-size:clamp(13px,2.2vw,15px);
            letter-spacing:.22em;color:var(--mut)}
-.tag{margin-top:26px;font-size:clamp(21px,4.4vw,32px);font-weight:900;line-height:1.35;
-     letter-spacing:-.02em;max-width:17ch}
+.tag{margin-top:26px;font-size:clamp(20px,4vw,30px);font-weight:900;line-height:1.35;
+     letter-spacing:-.025em;max-width:19ch}
 .lede{margin-top:18px;color:var(--mut);font-size:clamp(15px,2.4vw,17px);max-width:46ch}
 
-/* 레벨미터 */
-.meter{display:flex;align-items:flex-end;gap:4px;height:84px;margin-top:34px;
-       max-width:420px;opacity:.95}
-.meter i{flex:1;background:linear-gradient(180deg,var(--lime),#6E8A00);border-radius:2px;
-         transform-origin:bottom;animation:bob 1.15s ease-in-out infinite alternate}
-@keyframes bob{from{height:12%}to{height:100%}}
+/* 레벨미터 — 큼직하게 여섯, 사진 위에 반투명으로 */
+.meter{position:absolute;right:0;bottom:clamp(200px,24vw,330px);z-index:0;pointer-events:none;
+       width:min(54%,660px);height:clamp(190px,34vw,420px);
+       display:flex;align-items:flex-end;gap:clamp(16px,2.6vw,38px);
+       padding:0 clamp(28px,6vw,110px) clamp(22px,4vw,56px) 0;
+       opacity:.58;mix-blend-mode:screen;
+       mask-image:linear-gradient(90deg,transparent,#000 14%)}
+.meter i{flex:1;border-radius:6px 6px 0 0;
+         background:linear-gradient(180deg,rgba(204,255,0,.78) 0%,rgba(204,255,0,.34) 48%,
+                                           rgba(204,255,0,.06) 100%);
+         transform-origin:bottom;animation:bob 1.6s ease-in-out infinite alternate}
+@media (max-width:820px){.meter{width:84%;height:clamp(130px,30vw,200px);bottom:clamp(300px,52vw,430px);opacity:.5}}
+
+@keyframes bob{from{height:26%}to{height:96%}}
 @media (prefers-reduced-motion:reduce){.meter i{animation:none}}
 
 /* ── 버튼 ── */
@@ -65,7 +96,7 @@ p{margin:0}
 
 /* ── 큐알 ── */
 .qrwrap{display:flex;flex-wrap:wrap;gap:26px;align-items:center;margin-top:34px;
-        padding:26px;background:var(--ink2);border:1px solid var(--line);border-radius:14px}
+        padding:26px;background:#111316;border:1px solid var(--line);border-radius:14px}
 .qr{flex:none;width:168px;height:168px;background:#fff;border-radius:10px;padding:10px}
 .qr svg{display:block;width:100%;height:100%}
 .qrtxt{min-width:0;flex:1 1 260px}
@@ -111,36 +142,27 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 
 <header class="hero">
   <div class="w">
+   <div class="heroL">
     <p class="eyebrow">베타 테스트 · 크루장 초대</p>
     <h1 class="mark">
       <img class="logo" src="logo.png" alt="HAPSTER RUN &amp; RAVE" width="1200" height="1086">
       <span>햅스터 런앤레이브</span>
     </h1>
 
-    <div class="meter" aria-hidden="true">
-      <i style="animation-delay:-.05s"></i><i style="animation-delay:-.41s"></i>
-      <i style="animation-delay:-.77s"></i><i style="animation-delay:-.19s"></i>
-      <i style="animation-delay:-.63s"></i><i style="animation-delay:-.31s"></i>
-      <i style="animation-delay:-.88s"></i><i style="animation-delay:-.11s"></i>
-      <i style="animation-delay:-.52s"></i><i style="animation-delay:-.70s"></i>
-      <i style="animation-delay:-.26s"></i><i style="animation-delay:-.94s"></i>
-      <i style="animation-delay:-.38s"></i><i style="animation-delay:-.58s"></i>
-      <i style="animation-delay:-.08s"></i><i style="animation-delay:-.82s"></i>
-      <i style="animation-delay:-.46s"></i><i style="animation-delay:-.23s"></i>
-    </div>
-
-    <p class="tag">러닝에 파티를 얹다.<br><span class="lime">크루장이 디제이가 된다.</span></p>
+    <p class="tag">이어폰 속 하나의 비트,<br><span class="lime">전원이 터지는 라이브 러닝</span></p>
     <p class="lede">크루 전원이 같은 곡을 같은 순간에 듣고, 그 위로 크루장의 멘트가 얹힙니다.
       500미터 떨어져 있어도 선두부터 후미까지 한 번에 닿습니다.</p>
 
     <div class="cta">
       <!-- ★ 주소 두 곳만 바꾸면 됩니다 -->
-      <a class="btn b1" href="https://hapster.kr/download/hapster.apk">
+      <a class="btn b1" href="https://hapster.kr/hapster.apk">
         <strong>안드로이드 바로 설치</strong><span>APK 내려받기 · 설치 안내 포함</span></a>
       <span class="btn b2 off">
         <strong>아이폰 · 준비 중</strong><span>곧 TestFlight 초대가 열립니다</span></span>
     </div>
     <p class="free">베타 기간 동안 <span class="lime">무료</span>로 이용하실 수 있습니다.</p>
+   </div>
+
     <div class="qrwrap">
       <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges" role="img" aria-label="hapster.kr QR 코드"><rect width="33" height="33" fill="#fff"/><path fill="#0A0B0C" d="M2 2h7v1h-7zM10 2h2v1h-2zM13 2h1v1h-1zM15 2h1v1h-1zM24 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h3v1h-3zM14 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM30 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h5v1h-5zM20 4h1v1h-1zM24 4h1v1h-1zM26 4h3v1h-3zM30 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM13 5h2v1h-2zM17 5h1v1h-1zM19 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h3v1h-3zM30 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM11 6h1v1h-1zM18 6h2v1h-2zM21 6h2v1h-2zM24 6h1v1h-1zM26 6h3v1h-3zM30 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h2v1h-2zM16 7h1v1h-1zM19 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM30 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h7v1h-7zM10 9h2v1h-2zM13 9h3v1h-3zM18 9h3v1h-3zM4 10h3v1h-3zM8 10h1v1h-1zM10 10h5v1h-5zM17 10h2v1h-2zM23 10h3v1h-3zM28 10h3v1h-3zM3 11h2v1h-2zM7 11h1v1h-1zM9 11h1v1h-1zM12 11h3v1h-3zM18 11h3v1h-3zM22 11h2v1h-2zM26 11h2v1h-2zM30 11h1v1h-1zM4 12h3v1h-3zM8 12h1v1h-1zM11 12h1v1h-1zM13 12h2v1h-2zM16 12h2v1h-2zM21 12h1v1h-1zM23 12h2v1h-2zM27 12h1v1h-1zM4 13h1v1h-1zM6 13h1v1h-1zM10 13h2v1h-2zM14 13h1v1h-1zM17 13h2v1h-2zM21 13h4v1h-4zM26 13h2v1h-2zM29 13h1v1h-1zM5 14h4v1h-4zM10 14h3v1h-3zM14 14h2v1h-2zM17 14h5v1h-5zM23 14h1v1h-1zM25 14h1v1h-1zM27 14h4v1h-4zM2 15h1v1h-1zM5 15h3v1h-3zM9 15h2v1h-2zM12 15h2v1h-2zM15 15h1v1h-1zM18 15h1v1h-1zM21 15h4v1h-4zM26 15h2v1h-2zM29 15h2v1h-2zM5 16h1v1h-1zM7 16h2v1h-2zM11 16h4v1h-4zM19 16h1v1h-1zM23 16h1v1h-1zM25 16h1v1h-1zM3 17h4v1h-4zM10 17h2v1h-2zM13 17h2v1h-2zM16 17h1v1h-1zM18 17h1v1h-1zM23 17h1v1h-1zM26 17h2v1h-2zM29 17h1v1h-1zM4 18h3v1h-3zM8 18h1v1h-1zM11 18h3v1h-3zM16 18h1v1h-1zM18 18h6v1h-6zM25 18h1v1h-1zM27 18h2v1h-2zM2 19h2v1h-2zM9 19h2v1h-2zM13 19h2v1h-2zM16 19h1v1h-1zM18 19h2v1h-2zM23 19h1v1h-1zM25 19h2v1h-2zM29 19h2v1h-2zM2 20h1v1h-1zM4 20h2v1h-2zM7 20h2v1h-2zM10 20h1v1h-1zM12 20h2v1h-2zM15 20h1v1h-1zM18 20h1v1h-1zM22 20h1v1h-1zM24 20h2v1h-2zM28 20h1v1h-1zM2 21h1v1h-1zM4 21h3v1h-3zM9 21h4v1h-4zM16 21h5v1h-5zM24 21h1v1h-1zM29 21h2v1h-2zM2 22h1v1h-1zM4 22h1v1h-1zM7 22h3v1h-3zM11 22h1v1h-1zM13 22h3v1h-3zM17 22h4v1h-4zM22 22h5v1h-5zM28 22h2v1h-2zM10 23h2v1h-2zM15 23h1v1h-1zM19 23h1v1h-1zM22 23h1v1h-1zM26 23h2v1h-2zM30 23h1v1h-1zM2 24h7v1h-7zM12 24h11v1h-11zM24 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM13 25h3v1h-3zM18 25h1v1h-1zM21 25h2v1h-2zM26 25h2v1h-2zM30 25h1v1h-1zM2 26h1v1h-1zM4 26h3v1h-3zM8 26h1v1h-1zM10 26h2v1h-2zM17 26h2v1h-2zM22 26h8v1h-8zM2 27h1v1h-1zM4 27h3v1h-3zM8 27h1v1h-1zM10 27h2v1h-2zM13 27h3v1h-3zM20 27h4v1h-4zM25 27h1v1h-1zM27 27h2v1h-2zM2 28h1v1h-1zM4 28h3v1h-3zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM21 28h6v1h-6zM28 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM13 29h1v1h-1zM16 29h3v1h-3zM20 29h1v1h-1zM24 29h1v1h-1zM26 29h2v1h-2zM29 29h1v1h-1zM2 30h7v1h-7zM11 30h1v1h-1zM13 30h1v1h-1zM18 30h1v1h-1zM20 30h5v1h-5zM26 30h1v1h-1zM28 30h1v1h-1z"/></svg></div>
       <div class="qrtxt">
@@ -156,6 +178,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
     </div>
 
   </div>
+  <div class="meter" aria-hidden="true"><i style="animation-delay:-0.00s"></i><i style="animation-delay:-0.62s"></i><i style="animation-delay:-1.18s"></i><i style="animation-delay:-0.34s"></i><i style="animation-delay:-0.96s"></i><i style="animation-delay:-1.44s"></i></div>
 </header>
 
 <section>
@@ -209,7 +232,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
     <h2 style="margin-top:10px">모두가 기다렸던 단 하나의 레이브 러닝.<br>
       그 <span class="lime">첫 번째 크루</span>로 당신의 크루를 초대합니다.</h2>
     <div class="cta">
-      <a class="btn b1" href="https://hapster.kr/download/hapster.apk">
+      <a class="btn b1" href="https://hapster.kr/hapster.apk">
         <strong>안드로이드 바로 설치</strong><span>APK 내려받기</span></a>
       <span class="btn b2 off">
         <strong>아이폰 · 준비 중</strong><span>곧 TestFlight 초대가 열립니다</span></span>
