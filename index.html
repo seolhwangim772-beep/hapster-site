@@ -71,7 +71,13 @@ p{margin:0}
           width:min(56%,41rem);text-align:center;
           font-size:clamp(48px,6.1vw,98px);line-height:1.2;
           transform:rotate(-6.8deg);
-          text-shadow:0 3px 22px rgba(10,11,12,.94),0 0 60px rgba(10,11,12,.82)}
+          text-shadow:0 0 14px rgba(10,11,12,.98),0 0 30px rgba(10,11,12,.95),
+                      0 0 62px rgba(10,11,12,.88),0 3px 10px rgba(10,11,12,.96)}
+  /* 글자 뒤로 레벨미터가 지나가지 않게 어둡게 깔아준다 */
+  .tagsub::before{content:"";position:absolute;inset:-18% -12%;z-index:-1;pointer-events:none;
+          background:radial-gradient(62% 54% at 50% 50%,
+                     rgba(10,11,12,.90) 0%, rgba(10,11,12,.76) 44%,
+                     rgba(10,11,12,.34) 68%, rgba(10,11,12,0) 86%)}
 }
 /* 언어 전환 */
 .lang{position:fixed;top:10px;right:10px;z-index:60;display:flex;gap:4px;
