@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>HAPSTER RUN &amp; RAVE</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <style>
 /* 레이아웃: 한 줄 세로 스크롤. 히어로에 레벨미터 한 덩어리, 나머지는 조용하게 */
 :root{
@@ -61,8 +61,26 @@ p{margin:0}
 .tag{word-break:keep-all;margin-top:clamp(54px,8.4vw,112px);
      font-size:clamp(34px,6.4vw,64px);font-weight:900;line-height:1.2;letter-spacing:-.045em;
      -webkit-text-stroke:.9px currentColor;paint-order:stroke fill}
+/* 손글씨 한 줄 — 사진 위에 얹힌다 */
 .tagsub{word-break:keep-all;margin-top:clamp(22px,3.4vw,34px);
-        font-size:clamp(17px,2.9vw,23px);font-weight:800;line-height:1.5;letter-spacing:-.015em}
+        font-family:"Nanum Pen Script","Noto Sans KR",cursive;font-weight:400;
+        font-size:clamp(25px,4.2vw,34px);line-height:1.35;letter-spacing:0}
+@media (min-width:821px){
+  .tagsub{position:absolute;right:0;top:clamp(96px,12vw,172px);margin:0;
+          width:min(46%,30rem);text-align:center;
+          font-size:clamp(33px,3.6vw,54px);line-height:1.3;
+          transform:rotate(-3.4deg);
+          text-shadow:0 2px 16px rgba(10,11,12,.9),0 0 44px rgba(10,11,12,.7)}
+}
+/* 언어 전환 */
+.lang{position:fixed;top:10px;right:10px;z-index:60;display:flex;gap:4px;
+      padding:4px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(10,11,12,.74);backdrop-filter:blur(6px)}
+.lang button{appearance:none;border:0;cursor:pointer;border-radius:999px;
+      padding:6px 11px;font-family:var(--disp);font-weight:700;font-size:11.5px;
+      letter-spacing:.08em;background:transparent;color:var(--mut)}
+.lang button:hover{color:var(--fg)}
+.lang button.on{background:var(--lime);color:#0A0B0C}
 .tag2{word-break:keep-all;margin-top:clamp(34px,5.4vw,66px);
       font-size:clamp(15.5px,2.6vw,19px);font-weight:800;line-height:1.55;letter-spacing:-.01em}
 /* 헤드카피 둘째 줄 하이라이트 */
@@ -222,7 +240,9 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
   .mark span{display:none}            /* 로고에 이미 영문이 있다 */
   .tag{margin-top:46vw;font-size:33px;line-height:1.2;
        -webkit-text-stroke:.7px currentColor}
-  .tagsub{margin-top:20px;font-size:16.5px}
+  .tagsub{margin-top:16px;font-size:26px;line-height:1.3}
+  .lang{top:8px;right:8px;padding:3px}
+  .lang button{padding:5px 9px;font-size:11px}
   .tag2{margin-top:32px;font-size:16px}
   .heroL{display:flex;flex-direction:column}
   .feat{order:5;margin-top:30px;padding:16px 16px 16px 14px;gap:11px}
@@ -290,6 +310,12 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 </script>
 
 
+<nav class="lang" aria-label="Language">
+  <button type="button" data-lang="ko" class="on">KO</button>
+  <button type="button" data-lang="en">EN</button>
+  <button type="button" data-lang="ja">JA</button>
+</nav>
+
 <header class="hero">
   <div class="w">
    <div class="heroL">
@@ -353,7 +379,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
   </div>
 </section>
 
-<section style="padding-top:0">
+<section id="what" style="padding-top:0">
   <div class="w">
     <p class="eyebrow">무엇이 달라지나</p>
     <h2 style="font-size:clamp(23px,4.4vw,34px);margin-top:10px">그냥 음악만 들을 때와<br>완전히 다른 러닝</h2>
@@ -377,7 +403,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
   </div>
 </section>
 
-<section style="padding-top:0">
+<section id="how" style="padding-top:0">
   <div class="w">
     <p class="eyebrow">시작하는 법</p>
     <h2 style="font-size:clamp(23px,4.4vw,34px);margin-top:10px">코드 여섯 자리면 끝</h2>
@@ -421,6 +447,141 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 </section>
 
 <footer><div class="w">주식회사 티비아이씨 · 서울특별시 강남구 테헤란로84길 14, 5층 · 통신판매업신고 제2026-서울강남-02431호</div></footer>
+
+<script>
+/* ── 언어 전환 (KO 기본 · EN · JA) ───────────────────────────────
+   한국어는 이 문서의 원본 그대로를 쓴다. 아래 표는 영어·일본어만 담는다.
+   왼쪽은 '어느 자리인지'를 가리키는 선택자다. */
+(function(){
+var T={
+en:{
+'.hero .eyebrow':`Beta · Free`,
+'.tag':`The rave run<br><span class="hl">everyone was waiting for.</span>`,
+'.tagsub':`From music you just listen to,<br><span class="lime">to DJing you run with.</span>`,
+'.tag3':`Running alone? Still works.`,
+'.solop':`<b>Keep the music you already play.</b> No new playlist, nothing to pick. Just open HAPSTER alongside it and a DJ rides on top.<br>Solo runs were never boring because of your legs — it was the <b>audio</b>.`,
+'.solop2':`Try it for just <b>1 km</b>.`,
+'.cta .b1 strong':`Install on Android`,
+'.hero .cta .b1 span':`APK download · setup guide included`,
+'.end .cta .b1 span':`APK download`,
+'.cta .b2 strong':`Install on iPhone`,
+'.cta .b2 span':`Get it via TestFlight`,
+'.crew .eyebrow':`With your crew`,
+'.crew h2':`Be the <span class="lime">first crew</span><br>to bring your people in.`,
+'.crewp':`Every runner on the same song at the same moment — one beat holds you together.<br><b>A crew that moves as one beat.</b>`,
+'.feat li:nth-child(1) p':`<b>One beat</b> — the whole crew locks onto the same song at the same instant.`,
+'.feat li:nth-child(2) p':`<b>Live DJing</b> — calls ride over the music and push your pace.`,
+'.feat li:nth-child(3) p':`<b>Crew live talk</b> — your voice reaches the runner 500 m behind.`,
+'.qrtxt h3':`One QR is all your crew needs`,
+'.qrtxt p':`Post this screen in your group chat, or just send the QR. Anyone who scans it lands here and grabs the right build for their phone. After installing, <b>a six-digit code</b> gets them into the crew.`,
+'.qrdl':`Save QR image`,
+'#what .eyebrow':`What changes`,
+'#what h2':`Nothing like running<br>on music alone`,
+'.noise':`<b>No speakers, no complaints.</b> Blasting a speaker by the river gets you looks. HAPSTER stays inside everyone&rsquo;s earphones — <b>the crew hears it, nobody else does.</b>`,
+'.grid .cell:nth-child(1) h3':`DJing that leads the run`,
+'.grid .cell:nth-child(1) p':`<b>The HAPSTER DJ</b> rides over whatever you are already playing. <b>Over 1,000 calls</b> fire by distance, pace and segment — driving, lifting, carrying you through.`,
+'.grid .cell:nth-child(2) h3':`Live talk`,
+'.grid .cell:nth-child(2) p':`Talk with your crew while you run. Out of breath? One button reaches everyone.`,
+'.grid .cell:nth-child(3) h3':`Quick broadcast`,
+'.grid .cell:nth-child(3) p':`&ldquo;Let us take a break.&rdquo; &ldquo;Ease up a bit.&rdquo; Tap the lines you use most and the whole crew hears them.`,
+'.grid .cell:nth-child(4) h3':`Front &amp; back calls`,
+'.grid .cell:nth-child(4) p':`Different guidance for the leaders and the tail. The pack stretches out without falling apart.`,
+'.grid .cell:nth-child(5) h3':`A DJ in your own voice`,
+'.grid .cell:nth-child(5) p':`Use the crew leader&rsquo;s voice as the DJ. It becomes your crew&rsquo;s run.`,
+'.grid .cell:nth-child(6) h3':`Polaroid record`,
+'.grid .cell:nth-child(6) p':`When the run ends, your stats and a line land on a polaroid. Drop it straight into the group chat.`,
+'#how .eyebrow':`How to start`,
+'#how h2':`Six digits and you are in`,
+'.steps li:nth-child(1) strong':`The leader opens a room`,
+'.steps li:nth-child(1) p':`Pick distance, pace and DJ, then open the room. Register your crew name and the DJ calls it out.`,
+'.steps li:nth-child(2) strong':`Members enter six digits`,
+'.steps li:nth-child(2) p':`Scan the QR or type the code and you are in. No sign-up to get through.`,
+'.steps li:nth-child(3) strong':`Go`,
+'.steps li:nth-child(3) p':`Music starts on every phone at once, with the DJ on top. When it ends, everyone keeps the record.`,
+'.pull q':`Leader, that run was unreal — this thing is insane!!`,
+'.pull cite':`A crew member in the beta`,
+'.end .eyebrow':`Start now`,
+'.end h2':`Drop one QR into your group chat.<br>Tonight your whole crew runs on <span class="lime">the same beat</span>.`,
+'.contact span:first-child':`Questions · crew registration`,
+'footer .w':`TBIC Co.,Ltd · 5F, 14 Teheran-ro 84-gil, Gangnam-gu, Seoul, Korea · Mail-order business registration 2026-Seoul Gangnam-02431`
+},
+ja:{
+'.hero .eyebrow':`ベータ版 · 無料`,
+'.tag':`みんなが待っていた<br><span class="hl">唯一のレイブ・ランニング。</span>`,
+'.tagsub':`聴くだけの音楽から、<br><span class="lime">一緒に走るDJへ。</span>`,
+'.tag3':`ひとりで走ってもいい。`,
+'.solop':`<b>いつもの音楽はそのままで。</b>プレイリストを変える必要も、選び直す必要もありません。ハプスターを一緒に起動するだけで、その上にDJが乗ります。<br>ひとり走が退屈だったのは体力のせいではなく、<b>音のせい</b>でした。`,
+'.solop2':`まずは <b>1km</b> だけ走ってみてください。`,
+'.cta .b1 strong':`Androidにインストール`,
+'.hero .cta .b1 span':`APKダウンロード · 導入ガイド付き`,
+'.end .cta .b1 span':`APKダウンロード`,
+'.cta .b2 strong':`iPhoneにインストール`,
+'.cta .b2 span':`TestFlightで受け取る`,
+'.crew .eyebrow':`クルーと一緒なら`,
+'.crew h2':`その<span class="lime">最初のクルー</span>として<br>あなたの仲間を招待します。`,
+'.crewp':`クルー全員が同じ曲を同じ瞬間に — ひとつのビートでつながります。<br><b>同じビートでひとつになるクルー。</b>`,
+'.feat li:nth-child(1) p':`<b>ひとつのビート</b> — クルー全員が同じ瞬間、同じ曲でつながります。`,
+'.feat li:nth-child(2) p':`<b>リアルタイムDJ</b> — 音楽の上にコールが重なり、ペースを押し上げます。`,
+'.feat li:nth-child(3) p':`<b>クルーライブトーク</b> — 500メートル後ろの仲間にも声が届きます。`,
+'.qrtxt h3':`クルーにはこのQRひとつで足ります`,
+'.qrtxt p':`グループチャットにこの画面を貼るか、QRだけ送ってください。読み取ればこのページに来て、それぞれの端末に合うものを受け取れます。インストール後は<b>6桁のコード</b>だけでクルーに入れます。`,
+'.qrdl':`QR画像を保存`,
+'#what .eyebrow':`何が変わるのか`,
+'#what h2':`ただ音楽を聴くだけの<br>ランニングとは別物`,
+'.noise':`<b>スピーカーなし、苦情なし。</b>河川敷でスピーカーを鳴らせば視線が刺さります。ハプスターは各自のイヤホンの中で完結します — <b>クルーだけが聴き、周りは静かなまま。</b>`,
+'.grid .cell:nth-child(1) h3':`ランニングを導くDJ`,
+'.grid .cell:nth-child(1) p':`いつもの音楽の上に<b>ハプスターDJ</b>が乗ります。距離・ペース・区間に合わせて<b>1,000を超えるコール</b>が畳みかけ、押し上げ、引き上げます。`,
+'.grid .cell:nth-child(2) h3':`ライブトーク`,
+'.grid .cell:nth-child(2) p':`走りながらクルーとリアルタイムでやり取り。息が上がってもボタンひとつで全員に届きます。`,
+'.grid .cell:nth-child(3) h3':`クイックブロードキャスト`,
+'.grid .cell:nth-child(3) p':`「少し休みましょう」「もう少しゆっくり」。よく使う言葉は押すだけでクルー全員に飛びます。`,
+'.grid .cell:nth-child(4) h3':`前方・後方への案内`,
+'.grid .cell:nth-child(4) p':`先頭と最後尾にそれぞれ別の案内を送ります。列が伸びてもバラバラになりません。`,
+'.grid .cell:nth-child(5) h3':`自分の声でDJ`,
+'.grid .cell:nth-child(5) p':`クルーリーダーの声をそのままDJにできます。自分たちだけのランニングになります。`,
+'.grid .cell:nth-child(6) h3':`ポラロイド記録`,
+'.grid .cell:nth-child(6) p':`ランニングが終わると、記録とひと言がポラロイド1枚に残ります。そのままグループチャットへ。`,
+'#how .eyebrow':`はじめ方`,
+'#how h2':`6桁のコードだけ`,
+'.steps li:nth-child(1) strong':`リーダーがルームを作る`,
+'.steps li:nth-child(1) p':`距離・ペース・DJを選んでルームを開きます。アプリでクルー名を登録すると、DJがその名前を呼びます。`,
+'.steps li:nth-child(2) strong':`メンバーは6桁を入力`,
+'.steps li:nth-child(2) p':`QRを読み取るかコードを入力すればすぐ入れます。登録手続きは要りません。`,
+'.steps li:nth-child(3) strong':`スタート`,
+'.steps li:nth-child(3) p':`全員の端末で同時に音楽が始まり、その上にDJが乗ります。終われば全員に記録が残ります。`,
+'.pull q':`リーダー、ランニングが楽しすぎる、これヤバいです!!`,
+'.pull cite':`ベータテストに参加したクルーメンバー`,
+'.end .eyebrow':`今すぐ始める`,
+'.end h2':`グループチャットにQRをひとつ貼るだけ。<br>今夜、クルー全員が<span class="lime">同じビート</span>で走ります。`,
+'.contact span:first-child':`お問い合わせ · クルー登録のご案内`,
+'footer .w':`TBIC Co.,Ltd · 韓国ソウル特別市江南区テヘラン路84ギル14, 5F · 通信販売業申告 第2026-ソウル江南-02431号`
+}};
+
+var KEYS=Object.keys(T.en), KO=null;
+function snap(){KO={};KEYS.forEach(function(s){
+  KO[s]=[].map.call(document.querySelectorAll(s),function(el){return el.innerHTML;});});}
+function apply(lang){
+  if(!KO) snap();
+  var d=(lang==='ko')?null:T[lang];
+  KEYS.forEach(function(s){
+    [].forEach.call(document.querySelectorAll(s),function(el,i){
+      var v=(d&&d[s]!=null)?d[s]:KO[s][i];
+      if(v!=null) el.innerHTML=v;});});
+  document.documentElement.lang=lang;
+  [].forEach.call(document.querySelectorAll('.lang button'),function(b){
+    b.classList.toggle('on',b.getAttribute('data-lang')===lang);});
+  try{localStorage.setItem('hapster_lang',lang);}catch(e){}
+  if(typeof gtag==='function') gtag('event','change_language',{language:lang});
+}
+var nav=document.querySelector('.lang');
+if(nav) nav.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-lang]'); if(b) apply(b.getAttribute('data-lang'));});
+var saved=null; try{saved=localStorage.getItem('hapster_lang');}catch(e){}
+if(!saved){var n=(navigator.language||'').toLowerCase();
+  saved=(n.indexOf('ja')===0)?'ja':(n.indexOf('ko')===0)?'ko':(n.indexOf('en')===0)?'en':'ko';}
+if(saved!=='ko') apply(saved); else snap();
+})();
+</script>
 
 <script>
 // 어느 버튼을 눌렀는지 센다
