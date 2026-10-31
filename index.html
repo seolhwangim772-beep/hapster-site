@@ -78,6 +78,24 @@ p{margin:0}
 .feat i{flex:none;font-style:normal;font-size:15px;line-height:1.62;width:19px}
 .feat p{word-break:keep-all;font-size:clamp(14px,2.2vw,15.5px);line-height:1.62;color:var(--mut)}
 .feat b{color:var(--fg);font-weight:800}
+
+.crew{border-top:1px solid var(--line)}
+.crewp{word-break:keep-all;margin-top:16px;line-height:1.8;color:var(--mut);
+       font-size:clamp(14.5px,2.3vw,16.5px);max-width:48ch}
+.crewp b{color:var(--fg);font-weight:800}
+/* 혼자 뛰는 사람에게 — 두 번째 헤드 */
+.solo{margin-top:clamp(30px,4.6vw,56px);padding:clamp(20px,3vw,28px) clamp(20px,3vw,30px);
+      border-radius:14px;background:rgba(17,20,23,.80);backdrop-filter:blur(2px);
+      border:1px solid var(--line);border-top:3px solid var(--lime);max-width:46rem}
+.tag3{word-break:keep-all;font-size:clamp(24px,4.2vw,40px);font-weight:900;
+      line-height:1.25;letter-spacing:-.035em;color:var(--lime);
+      -webkit-text-stroke:.5px currentColor}
+.solop{word-break:keep-all;margin-top:14px;font-size:clamp(14.5px,2.3vw,16.5px);
+       line-height:1.75;color:var(--mut)}
+.solop b{color:var(--fg);font-weight:800}
+.solop2{word-break:keep-all;margin-top:14px;font-size:clamp(15px,2.5vw,18px);
+        font-weight:800;color:var(--fg)}
+.solop2 b{color:var(--lime);font-weight:900}
 .lede b{color:var(--fg);font-weight:700}
 .lede{word-break:keep-all;line-height:1.85;margin-top:clamp(26px,4vw,44px);
       color:var(--mut);font-size:clamp(15px,2.4vw,17px);max-width:48ch}
@@ -211,7 +229,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
   .feat p{font-size:13.5px;line-height:1.6}
   .feat i{font-size:14px;width:17px}
   /* 레벨미터 — 사진 오른쪽 아래에 세 개만 */
-  .meter{display:flex;top:60vw;bottom:auto;right:0;
+  .meter{display:flex;top:78vw;bottom:auto;right:0;
          width:46%;height:86px;gap:13px;padding:0 16px 0 0;opacity:.5}
   .meter .col:nth-child(n+4){display:none}
   /* 설치 버튼 둘을 한 줄에 나란히 */
@@ -271,20 +289,22 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 <header class="hero">
   <div class="w">
    <div class="heroL">
-    <p class="eyebrow">베타 테스트 · 크루장 초대</p>
+    <p class="eyebrow">베타 테스트 · 무료</p>
     <h1 class="mark">
       <img class="logo" src="logo.png" alt="HAPSTER RUN &amp; RAVE" width="1200" height="1086">
       <span>햅스터 런앤레이브</span>
     </h1>
 
     <p class="tag">모두가 기다렸던<br><span class="hl">단 하나의 레이브 러닝.</span></p>
-    <p class="tagsub">그 <span class="lime">첫 번째 크루</span>로<br>당신의 크루를 초대합니다.</p>
-    <p class="tag2">음악이 아니라, 디제잉입니다.<br><span class="lime">같은 비트로 하나가 되는 크루.</span></p>
-    <ul class="feat">
-      <li><i>⚡</i><p><b>하나의 비트</b> — 크루 전원이 같은 순간 같은 곡으로 묶입니다.</p></li>
-      <li><i>🎧</i><p><b>실시간 디제잉</b> — 음악 위로 멘트가 얹혀 페이스를 밀어줍니다.</p></li>
-      <li><i>🎙</i><p><b>크루 라이브톡</b> — 500미터 뒤처진 크루원까지 목소리가 닿습니다.</p></li>
-    </ul>
+    <p class="tagsub">듣기만 하는 음악에서,<br><span class="lime">함께하는 디제잉</span>으로.</p>
+
+    <div class="solo">
+      <p class="tag3">혼자 뛰어도 됩니다.</p>
+      <p class="solop"><b>듣던 음악 그대로 두세요.</b> 플레이리스트를 바꿀 것도,
+        새로 고를 것도 없습니다. 햅스터만 같이 켜면 그 위에 디제이가 얹힙니다.<br>
+        혼뛰가 지루했던 건 체력 탓이 아니라 <b>오디오 탓</b>입니다.</p>
+      <p class="solop2">딱 <b>1km</b>만 켜고 뛰어보세요.</p>
+    </div>
 
     <div class="cta">
       <!-- ★ 주소 두 곳만 바꾸면 됩니다 -->
@@ -293,7 +313,27 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
       <a class="btn b2" href="https://testflight.apple.com/join/DtBcKVKC">
         <strong>아이폰 바로 설치</strong><span>TestFlight로 받기</span></a>
     </div>
-   </div>
+    </div>
+
+  </div>
+  <div class="meter" aria-hidden="true"><span class="col" style="animation-delay:-0.00s"><i style="animation-delay:-0.00s"></i><u style="animation-delay:-0.00s"></u></span><span class="col" style="animation-delay:-0.74s"><i style="animation-delay:-0.74s"></i><u style="animation-delay:-0.74s"></u></span><span class="col" style="animation-delay:-1.42s"><i style="animation-delay:-1.42s"></i><u style="animation-delay:-1.42s"></u></span><span class="col" style="animation-delay:-0.38s"><i style="animation-delay:-0.38s"></i><u style="animation-delay:-0.38s"></u></span><span class="col" style="animation-delay:-1.12s"><i style="animation-delay:-1.12s"></i><u style="animation-delay:-1.12s"></u></span><span class="col" style="animation-delay:-1.66s"><i style="animation-delay:-1.66s"></i><u style="animation-delay:-1.66s"></u></span></div>
+</header>
+
+
+<section class="crew">
+  <div class="w">
+    <p class="eyebrow">크루와 함께라면</p>
+    <h2 style="font-size:clamp(23px,4.4vw,34px);margin-top:10px">그 <span class="lime">첫 번째 크루</span>로<br>
+      당신의 크루를 초대합니다.</h2>
+    <p class="crewp">크루 전원이 같은 곡을 같은 순간에 — 하나의 비트로 묶입니다.<br>
+      <b>같은 비트로 하나가 되는 크루.</b></p>
+
+    <ul class="feat">
+      <li><i>⚡</i><p><b>하나의 비트</b> — 크루 전원이 같은 순간 같은 곡으로 묶입니다.</p></li>
+      <li><i>🎧</i><p><b>실시간 디제잉</b> — 음악 위로 멘트가 얹혀 페이스를 밀어줍니다.</p></li>
+      <li><i>🎙</i><p><b>크루 라이브톡</b> — 500미터 뒤처진 크루원까지 목소리가 닿습니다.</p></li>
+    </ul>
+
 
     <div class="qrwrap">
       <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges" role="img" aria-label="hapster.kr QR 코드"><rect width="33" height="33" fill="#fff"/><path fill="#0A0B0C" d="M2 2h7v1h-7zM10 2h2v1h-2zM13 2h1v1h-1zM15 2h1v1h-1zM24 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h3v1h-3zM14 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM30 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h5v1h-5zM20 4h1v1h-1zM24 4h1v1h-1zM26 4h3v1h-3zM30 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM13 5h2v1h-2zM17 5h1v1h-1zM19 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h3v1h-3zM30 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM11 6h1v1h-1zM18 6h2v1h-2zM21 6h2v1h-2zM24 6h1v1h-1zM26 6h3v1h-3zM30 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h2v1h-2zM16 7h1v1h-1zM19 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM30 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h7v1h-7zM10 9h2v1h-2zM13 9h3v1h-3zM18 9h3v1h-3zM4 10h3v1h-3zM8 10h1v1h-1zM10 10h5v1h-5zM17 10h2v1h-2zM23 10h3v1h-3zM28 10h3v1h-3zM3 11h2v1h-2zM7 11h1v1h-1zM9 11h1v1h-1zM12 11h3v1h-3zM18 11h3v1h-3zM22 11h2v1h-2zM26 11h2v1h-2zM30 11h1v1h-1zM4 12h3v1h-3zM8 12h1v1h-1zM11 12h1v1h-1zM13 12h2v1h-2zM16 12h2v1h-2zM21 12h1v1h-1zM23 12h2v1h-2zM27 12h1v1h-1zM4 13h1v1h-1zM6 13h1v1h-1zM10 13h2v1h-2zM14 13h1v1h-1zM17 13h2v1h-2zM21 13h4v1h-4zM26 13h2v1h-2zM29 13h1v1h-1zM5 14h4v1h-4zM10 14h3v1h-3zM14 14h2v1h-2zM17 14h5v1h-5zM23 14h1v1h-1zM25 14h1v1h-1zM27 14h4v1h-4zM2 15h1v1h-1zM5 15h3v1h-3zM9 15h2v1h-2zM12 15h2v1h-2zM15 15h1v1h-1zM18 15h1v1h-1zM21 15h4v1h-4zM26 15h2v1h-2zM29 15h2v1h-2zM5 16h1v1h-1zM7 16h2v1h-2zM11 16h4v1h-4zM19 16h1v1h-1zM23 16h1v1h-1zM25 16h1v1h-1zM3 17h4v1h-4zM10 17h2v1h-2zM13 17h2v1h-2zM16 17h1v1h-1zM18 17h1v1h-1zM23 17h1v1h-1zM26 17h2v1h-2zM29 17h1v1h-1zM4 18h3v1h-3zM8 18h1v1h-1zM11 18h3v1h-3zM16 18h1v1h-1zM18 18h6v1h-6zM25 18h1v1h-1zM27 18h2v1h-2zM2 19h2v1h-2zM9 19h2v1h-2zM13 19h2v1h-2zM16 19h1v1h-1zM18 19h2v1h-2zM23 19h1v1h-1zM25 19h2v1h-2zM29 19h2v1h-2zM2 20h1v1h-1zM4 20h2v1h-2zM7 20h2v1h-2zM10 20h1v1h-1zM12 20h2v1h-2zM15 20h1v1h-1zM18 20h1v1h-1zM22 20h1v1h-1zM24 20h2v1h-2zM28 20h1v1h-1zM2 21h1v1h-1zM4 21h3v1h-3zM9 21h4v1h-4zM16 21h5v1h-5zM24 21h1v1h-1zM29 21h2v1h-2zM2 22h1v1h-1zM4 22h1v1h-1zM7 22h3v1h-3zM11 22h1v1h-1zM13 22h3v1h-3zM17 22h4v1h-4zM22 22h5v1h-5zM28 22h2v1h-2zM10 23h2v1h-2zM15 23h1v1h-1zM19 23h1v1h-1zM22 23h1v1h-1zM26 23h2v1h-2zM30 23h1v1h-1zM2 24h7v1h-7zM12 24h11v1h-11zM24 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM13 25h3v1h-3zM18 25h1v1h-1zM21 25h2v1h-2zM26 25h2v1h-2zM30 25h1v1h-1zM2 26h1v1h-1zM4 26h3v1h-3zM8 26h1v1h-1zM10 26h2v1h-2zM17 26h2v1h-2zM22 26h8v1h-8zM2 27h1v1h-1zM4 27h3v1h-3zM8 27h1v1h-1zM10 27h2v1h-2zM13 27h3v1h-3zM20 27h4v1h-4zM25 27h1v1h-1zM27 27h2v1h-2zM2 28h1v1h-1zM4 28h3v1h-3zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM21 28h6v1h-6zM28 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM13 29h1v1h-1zM16 29h3v1h-3zM20 29h1v1h-1zM24 29h1v1h-1zM26 29h2v1h-2zM29 29h1v1h-1zM2 30h7v1h-7zM11 30h1v1h-1zM13 30h1v1h-1zM18 30h1v1h-1zM20 30h5v1h-5zM26 30h1v1h-1zM28 30h1v1h-1z"/></svg></div>
@@ -307,10 +347,9 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
     </div>
 
   </div>
-  <div class="meter" aria-hidden="true"><span class="col" style="animation-delay:-0.00s"><i style="animation-delay:-0.00s"></i><u style="animation-delay:-0.00s"></u></span><span class="col" style="animation-delay:-0.74s"><i style="animation-delay:-0.74s"></i><u style="animation-delay:-0.74s"></u></span><span class="col" style="animation-delay:-1.42s"><i style="animation-delay:-1.42s"></i><u style="animation-delay:-1.42s"></u></span><span class="col" style="animation-delay:-0.38s"><i style="animation-delay:-0.38s"></i><u style="animation-delay:-0.38s"></u></span><span class="col" style="animation-delay:-1.12s"><i style="animation-delay:-1.12s"></i><u style="animation-delay:-1.12s"></u></span><span class="col" style="animation-delay:-1.66s"><i style="animation-delay:-1.66s"></i><u style="animation-delay:-1.66s"></u></span></div>
-</header>
+</section>
 
-<section>
+<section style="padding-top:0">
   <div class="w">
     <p class="eyebrow">무엇이 달라지나</p>
     <h2 style="font-size:clamp(23px,4.4vw,34px);margin-top:10px">그냥 음악만 들을 때와<br>완전히 다른 러닝</h2>
