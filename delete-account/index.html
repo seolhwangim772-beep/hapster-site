@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>계정 삭제 안내 · HAPSTER</title>
+<meta name="description" content="햅스터(HAPSTER) 계정 삭제(회원 탈퇴) 방법과 삭제·보관되는 데이터 안내">
+<link rel="canonical" href="https://hapster.kr/delete-account">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --ink:#0A0B0C; --ink2:#131619; --ink3:#1B1F23;
+  --lime:#CCFF00; --fg:#F1F3F4; --mut:#8C949C; --line:rgba(241,243,244,.13);
+  --red:#FF6B6B;
+  --disp:"Archivo","Noto Sans KR",system-ui,sans-serif;
+  --body:"Noto Sans KR","Archivo",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--body);
+     font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased}
+.w{max-width:760px;margin-inline:auto;
+   padding-left:max(20px,env(safe-area-inset-left,0px));
+   padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:900;letter-spacing:-.02em}
+p{margin:0}
+a{color:var(--lime)}
+.lime{color:var(--lime)}
+.eyebrow{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.18em;
+         text-transform:uppercase;color:var(--mut)}
+
+header{border-bottom:1px solid var(--line);padding-block:clamp(40px,8vw,72px) clamp(28px,5vw,44px)}
+header .logo{width:clamp(92px,10vw,120px);height:auto;display:block;margin-bottom:18px}
+h1{font-size:clamp(28px,5.4vw,44px);line-height:1.22;margin-top:10px}
+.lead{margin-top:16px;color:var(--mut);font-size:15px;word-break:keep-all}
+
+section{padding-block:clamp(34px,6vw,56px);border-bottom:1px solid var(--line)}
+h2{font-size:clamp(19px,3.2vw,24px);margin-bottom:6px}
+.sub{color:var(--mut);font-size:13.5px;margin-bottom:20px;word-break:keep-all}
+
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:16px 16px 16px 58px;
+            border:1px solid var(--line);border-radius:14px;background:var(--ink2);
+            margin-bottom:10px;word-break:keep-all}
+ol.steps li::before{content:counter(s);position:absolute;left:16px;top:15px;
+            width:26px;height:26px;border-radius:999px;background:var(--lime);color:#0A0B0C;
+            font-family:var(--disp);font-weight:900;font-size:13px;
+            display:grid;place-items:center}
+ol.steps b{color:#fff}
+ol.steps .hint{display:block;margin-top:5px;color:var(--mut);font-size:13px}
+
+.note{border:1px solid var(--line);border-left:3px solid var(--lime);
+      border-radius:0 12px 12px 0;background:var(--ink2);padding:14px 16px;
+      font-size:13.5px;color:#C9D0D6;word-break:keep-all;margin-top:18px}
+.warn{border-left-color:var(--red)}
+.warn b{color:var(--red)}
+
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:12px 12px;border-bottom:1px solid var(--line);
+      word-break:keep-all}
+th{font-family:var(--disp);font-weight:700;font-size:11.5px;letter-spacing:.1em;
+   text-transform:uppercase;color:var(--mut);white-space:nowrap}
+td:first-child{white-space:nowrap;font-weight:700;color:#fff}
+td .muted{color:var(--mut);font-size:13px;display:block;margin-top:3px}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.contact{display:grid;gap:4px;font-size:14.5px}
+.contact span{color:var(--mut)}
+footer{padding-block:34px 56px;color:var(--mut);font-size:12.5px}
+footer a{color:var(--mut)}
+.back{display:inline-block;margin-top:14px;font-family:var(--disp);font-weight:700;
+      font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+</style>
+
+<header>
+  <div class="w">
+    <img class="logo" src="../logo.png" alt="HAPSTER">
+    <p class="eyebrow">Account deletion</p>
+    <h1>계정 삭제(회원 탈퇴) 안내</h1>
+    <p class="lead">
+      햅스터(HAPSTER) 계정은 <b>앱 안에서 직접</b> 삭제할 수 있습니다.
+      앱을 쓸 수 없는 상황이면 이메일로 요청하셔도 됩니다.
+      삭제되는 데이터와 법령에 따라 보관되는 데이터는 아래 표에 적어 두었습니다.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="w">
+    <h2>방법 1 — 앱에서 직접 삭제하기</h2>
+    <p class="sub">햅스터 앱을 쓸 수 있다면 이 방법이 가장 빠릅니다. 요청이 아니라 <b>즉시 삭제</b>됩니다.</p>
+    <ol class="steps">
+      <li>
+        햅스터 앱을 열고 화면 아래 <b>메뉴</b> → <b>마이페이지</b> 를 누릅니다.
+        <span class="hint">마이페이지 &gt; 계정 삭제(탈퇴) — 개인정보처리방침 제3-1조와 같은 경로입니다.</span>
+      </li>
+      <li>
+        마이페이지를 끝까지 내려 <b>‘계정 삭제 (탈퇴)’</b> 를 누릅니다.
+      </li>
+      <li>
+        <b>‘삭제되는 것’</b> 안내를 읽고 <b>‘이해했어요 · 계속’</b> 을 누릅니다.
+        <span class="hint">무엇이 복원되고 무엇이 복원되지 않는지 이 화면에서 보여 드립니다.</span>
+      </li>
+      <li>
+        <b>‘본인 확인’</b> 을 마친 뒤 <b>‘삭제합니다’</b> 를 누르면 삭제가 시작됩니다.
+        <span class="hint">이메일로 가입하셨으면 비밀번호를, 구글로 가입하셨으면 구글 로그인 창으로 확인합니다.</span>
+      </li>
+    </ol>
+
+    <div class="note">
+      <b>크루장이신 경우</b> — 본인 확인 전에 <b>크루를 넘길 분을 고르는 화면</b>이 한 번 더 나옵니다.
+      크루는 없어지지 않고 승계되며, 고르지 않으시면 최근 함께 뛴 크루원 중 가장 오래 함께한 분에게 자동으로 넘어갑니다.
+      크루원이 아무도 없을 때만 크루가 해체됩니다.
+    </div>
+
+    <div class="note warn">
+      <b>되돌릴 수 없습니다.</b> 삭제가 끝나면 러닝 기록·크루 소속·‘내 목소리 DJ’ 음성은 복구되지 않습니다.
+      ‘내 목소리 DJ’ 는 <b>녹음 원본을 보관하지 않기 때문에</b> 되살릴 방법이 없고, 다시 만들려면 재녹음이 필요합니다.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <h2>방법 2 — 이메일로 요청하기</h2>
+    <p class="sub">앱을 지웠거나 로그인이 되지 않아 직접 삭제할 수 없을 때 이용해 주세요.</p>
+    <div class="contact">
+      <span>받는 곳</span>
+      <p><a href="mailto:tbic@tbickorea.com?subject=%5B%ED%96%85%EC%8A%A4%ED%84%B0%5D%20%EA%B3%84%EC%A0%95%20%EC%82%AD%EC%A0%9C%20%EC%9A%94%EC%B2%AD">tbic@tbickorea.com</a></p>
+      <span style="margin-top:10px">보내실 내용</span>
+      <p>가입하신 <b>이메일 주소</b>와 <b>앱에서 쓰시던 별명</b></p>
+      <span style="margin-top:10px">처리</span>
+      <p>본인 확인 후 <b>지체 없이</b> 삭제하고 결과를 회신해 드립니다.</p>
+    </div>
+    <div class="note">
+      본인 확인이 되지 않으면 삭제해 드릴 수 없습니다. 다른 사람의 계정이 지워지는 일을 막기 위한 절차입니다.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="w">
+    <h2>삭제되는 데이터 / 보관되는 데이터</h2>
+    <p class="sub">
+      개인정보처리방침 <b>제3-1조(회원 탈퇴 및 파기 절차)</b> · <b>제15조(개인정보의 파기 절차 및 방법)</b> 와 같은 내용입니다.
+    </p>
+    <div class="scroller">
+      <table>
+        <tr><th>구분</th><th>내용</th><th>기간</th></tr>
+        <tr>
+          <td>즉시 삭제</td>
+          <td>
+            계정 정보(이메일), 별명, 러닝 기록, 재생 기록, 크루 소속,
+            음성 클립 및 음성 모델, 이름 클립, 잔여 이용 시간, 베타 설문 응답
+            <span class="muted">데이터베이스와 파일 저장소에서 영구 삭제하며 복구할 수 없습니다.</span>
+          </td>
+          <td>탈퇴 즉시</td>
+        </tr>
+        <tr>
+          <td>보관 ①<br>동의 기록</td>
+          <td>
+            개인을 식별할 수 없도록 처리(비가역 해시)한 뒤 보관합니다.
+            <span class="muted">동의 여부에 관한 분쟁에 대비하기 위한 목적으로만 쓰며, 이용자를 다시 식별하거나 다른 목적으로 이용하지 않습니다.</span>
+          </td>
+          <td>식별 불가 처리 후 보관</td>
+        </tr>
+        <tr>
+          <td>보관 ②<br>결제·거래 기록</td>
+          <td>
+            「전자상거래 등에서의 소비자보호에 관한 법률」에 따라 대금 결제 및 재화 등의 공급에 관한 기록을 보관합니다.
+            <span class="muted">개인 식별 정보는 삭제하되 거래 내역 자체는 보존됩니다.</span>
+          </td>
+          <td>5년</td>
+        </tr>
+        <tr>
+          <td>외부 음성<br>합성 사업자</td>
+          <td>
+            ‘내 목소리 DJ’ 로 만들어진 음성 모델은 회사가 수탁사(ElevenLabs)에 <b>삭제를 요청</b>합니다.
+            <span class="muted">해당 사업자 시스템에서의 완전 파기 시점은 개인정보처리방침 제7조와 같습니다.</span>
+          </td>
+          <td>요청 즉시</td>
+        </tr>
+      </table>
+    </div>
+    <div class="note">
+      회사는 개인정보를 종이에 출력하여 보관하지 않습니다.
+      법령에 따라 보존해야 하는 정보는 그 기간이 지난 뒤 파기합니다.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="w">
+    <p>자세한 내용은 앱 안의 <b>개인정보처리방침</b>(마이페이지 &gt; 약관 및 정책)에서 확인하실 수 있습니다.</p>
+    <p style="margin-top:8px">
+      TBIC Co., Ltd. · 서울특별시 강남구 테헤란로84길 14, 5층 (대치동, 지어로빌딩) ·
+      <a href="mailto:tbic@tbickorea.com">tbic@tbickorea.com</a> · 070-8979-6060
+    </p>
+    <a class="back" href="/">← HAPSTER</a>
+  </div>
+</footer>
+</html>
