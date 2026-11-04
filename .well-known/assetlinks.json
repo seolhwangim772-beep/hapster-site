@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tbic.hapster",
+      "sha256_cert_fingerprints":
+        ["68:CA:C8:4B:33:50:7B:F1:67:BF:EF:BC:CC:0F:2E:CD:82:02:28:61:A5:D0:9C:6F:4F:4E:DC:E4:F5:60:44:5F"]
+    }
+  }
+]
