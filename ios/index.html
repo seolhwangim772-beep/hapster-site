@@ -24,6 +24,8 @@
      ⚠️ 앱ID 는 ★승인 뒤 App Store Connect 에서 확인한다. ★지금은 모른다 — 추측해 넣지 말 것.
   ⚠️ 지금은 ★TestFlight 라 ★아무나 못 깐다(외부 테스터 자리 수 제한). 그래서 이 주소를
      넓게 뿌리면 "안 깔린다" 문의가 온다 — ★승인 전에는 가까운 사람에게만 줄 것.
+     ★공개 자리(프로필·캡션)에는 ★`hapster.kr` 만 쓴다 (대표 확정 2026-11-06).
+     ⇒ 애플 승인이 나면 이 제한이 풀린다. 그때 위 ⓐ~ⓔ 를 한 번에 정리한다(대표 확정).
   ════════════════════════════════════════════════════════════════════════════
 -->
 <meta http-equiv="refresh" content="2;url=https://testflight.apple.com/join/DtBcKVKC">
@@ -90,6 +92,8 @@
   var gone = false;
   function go(){ if (gone) return; gone = true; location.replace(url); }
 
+  /* ★`source`·`from` 이 GA 보고서 화면에 안 뜨는 이유(맞춤 측정기준을 ★일부러 등록 안 했다)는
+     ../android/index.html 의 ★같은 자리 주석에 적어 뒀다. 여기 다시 안 적는다. */
   try {
     gtag('event', 'shortlink_' + PLATFORM, {
       source: src || '(none)',

@@ -101,6 +101,11 @@
   var gone = false;
   function go(){ if (gone) return; gone = true; location.replace(url); }
 
+  /* ★★출처는 ★`utm_source=` 로 뿌린다 (대표 확정 2026-11-06) — GA4 ★맞춤 측정기준은 ★등록 안 한다.
+     ⚠️ 그래서 아래 `source`·`from` 은 ★보고서 화면에 ★안 뜬다(등록해야 뜬다).
+        ★그걸 보고 "안 찍히는구나" 로 읽지 말 것 — ★나가기는 나간다(실측: en=shortlink_android).
+     ⚠️ 지우지도 말 것 — DebugView·내보내기에는 남고, 나중에 등록하면 ★그때부터 바로 쪼개 보인다.
+     ⇒ 쪼개 보려면 ★주소를 `?utm_source=insta&utm_medium=sns` 로 준다(콘솔 작업 0). */
   try {
     gtag('event', 'shortlink_' + PLATFORM, {
       source: src || '(none)',
