@@ -346,8 +346,16 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 
     <div class="cta">
       <!-- ★ 주소 두 곳만 바꾸면 됩니다 -->
-      <a class="btn b1" href="https://hapster.kr/hapster.apk">
-        <strong>안드로이드 바로 설치</strong><span>APK 내려받기 · 설치 안내 포함</span></a>
+      <!-- ★★2026-11-06 구글 플레이 출시 완료 → APK 직접 내려받기를 ★스토어 링크로 바꿨다(대표 지시).
+           ⚠️ 바꿀 자리가 ★주소 하나가 아니다 — 세 군데가 같이 움직인다:
+             ① 이 href(그리고 .end 의 같은 버튼)  ★href 는 언어 공통이다(아래 T 표는 innerHTML 만 바꾼다)
+             ② 버튼 밑줄 글자 — ★3개 국어 전부(아래 T 표 `.cta .b1 span`). 주소만 바꾸면 영어·일본어에
+                "APK download"가 남아 ★말과 동작이 어긋난다
+             ③ 맨 아래 GA 사건 판정 — `.apk` 로만 세고 있었다. 안 고치면 download_android 가 ★조용히 0건이 된다
+           ⚠️ 아이폰(b2)은 ★그대로 TestFlight 다 — 애플은 아직 심사 중이다(대표 2026-11-06).
+           ⚠️ 옛 APK 파일(hapster.apk · download/hapster.apk)은 ★지우지 않았다 — 뿌려진 옛 주소가 죽는다. -->
+      <a class="btn b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
+        <strong>안드로이드 바로 설치</strong><span>플레이스토어에서 받기</span></a>
       <a class="btn b2" href="https://testflight.apple.com/join/DtBcKVKC" target="_blank" rel="noopener">
         <strong>아이폰 바로 설치</strong><span>TestFlight로 받기</span></a>
     </div>
@@ -441,8 +449,9 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
     <h2 style="margin-top:10px">크루방에 큐알 하나만 올리면 됩니다.<br>
       오늘 밤, 크루 전원이 <span class="lime">같은 비트</span>로 달립니다.</h2>
     <div class="cta">
-      <a class="btn b1" href="https://hapster.kr/hapster.apk">
-        <strong>안드로이드 바로 설치</strong><span>APK 내려받기</span></a>
+      <!-- ★2026-11-06 — 위 히어로 버튼과 ★같이 바꿨다(한쪽만 고치면 아래 버튼만 APK 로 간다). 경위는 그 자리 주석. -->
+      <a class="btn b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
+        <strong>안드로이드 바로 설치</strong><span>플레이스토어에서 받기</span></a>
       <a class="btn b2" href="https://testflight.apple.com/join/DtBcKVKC" target="_blank" rel="noopener">
         <strong>아이폰 바로 설치</strong><span>TestFlight로 받기</span></a>
     </div>
@@ -469,9 +478,11 @@ en:{
 '.tag3':`Running alone? Still works.`,
 '.solop':`<b>Keep the music you already play.</b> No new playlist, nothing to pick. Just open HAPSTER alongside it and a DJ rides on top.<br>Solo runs were never boring because of your legs — it was the <b>audio</b>.`,
 '.solop2':`Try it for just <b>1 km</b>.`,
+/* ★2026-11-06 — 플레이 출시로 "APK download" 가 거짓이 됐다.
+   ★자리를 ★하나로 합쳤다(옛날엔 히어로·맨아래가 달라 선택자가 둘이었다) — b2 와 같은 꼴이라
+   앞으로 ★한 줄만 고치면 두 버튼이 같이 간다(한쪽만 바뀌는 사고를 구조로 막는다). */
 '.cta .b1 strong':`Install on Android`,
-'.hero .cta .b1 span':`APK download · setup guide included`,
-'.end .cta .b1 span':`APK download`,
+'.cta .b1 span':`Get it on Google Play`,
 '.cta .b2 strong':`Install on iPhone`,
 '.cta .b2 span':`Get it via TestFlight`,
 '.crew .eyebrow':`With your crew`,
@@ -520,9 +531,9 @@ ja:{
 '.tag3':`ひとりで走ってもいい。`,
 '.solop':`<b>いつもの音楽はそのままで。</b>プレイリストを変える必要も、選び直す必要もありません。ハプスターを一緒に起動するだけで、その上にDJが乗ります。<br>ひとり走が退屈だったのは体力のせいではなく、<b>音のせい</b>でした。`,
 '.solop2':`まずは <b>1km</b> だけ走ってみてください。`,
+/* ★2026-11-06 — 영어 표와 같은 이유로 한 자리로 합쳤다(위 주석 참조). */
 '.cta .b1 strong':`Androidにインストール`,
-'.hero .cta .b1 span':`APKダウンロード · 導入ガイド付き`,
-'.end .cta .b1 span':`APKダウンロード`,
+'.cta .b1 span':`Google Playで受け取る`,
 '.cta .b2 strong':`iPhoneにインストール`,
 '.cta .b2 span':`TestFlightで受け取る`,
 '.crew .eyebrow':`クルーと一緒なら`,
@@ -598,7 +609,12 @@ document.addEventListener('click', function (e) {
   if (!a) return;
   var href = a.getAttribute('href') || '';
   var name = null;
-  if (href.indexOf('.apk') > -1)              name = 'download_android';
+  /* ★★2026-11-06 — 안드로이드 버튼이 ★플레이스토어 링크로 바뀌었다.
+     ⚠️ `.apk` 만 보고 있었으므로 안 고치면 download_android 가 ★조용히 0건이 된다
+        (버튼은 멀쩡히 눌리고 사건만 안 찍힌다 — 숫자가 사라진 걸 나중에 알게 되는 자리다).
+     ★옛 APK 주소도 살려 뒀으므로(파일을 안 지웠다) ★둘 다 센다. */
+  if (href.indexOf('play.google.com') > -1 ||
+      href.indexOf('.apk') > -1)              name = 'download_android';
   else if (href.indexOf('testflight') > -1)   name = 'download_ios';
   else if (a.classList.contains('qrdl'))      name = 'save_qr';
   else if (href.indexOf('youtube.com') > -1)  name = 'open_youtube';
