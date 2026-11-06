@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>햅스터 안드로이드 설치</title>
+<meta name="robots" content="noindex,follow">
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  hapster.kr/android — ★짧은 설치 주소 (2026-11-06 대표 지시)
+  ════════════════════════════════════════════════════════════════════════════
+  ★왜 html 인가: GitHub Pages 는 ★서버 리다이렉트(301/302)를 못 건다. 그래서
+    ① meta refresh (자바스크립트가 꺼져 있어도 간다)
+    ② 자바스크립트 (GA 로 ★세고 나서 간다 — 보통 이쪽이 먼저 돈다)
+    ③ 눈에 보이는 링크 (①②가 다 막혀도 손으로 누를 수 있다)
+  ★셋 다 둔다. 하나만 두면 ★막히는 환경에서 조용히 아무 데도 못 간다.
+
+  ★★목적지를 바꿀 때 — ★이 파일 안에 그 주소가 ★세 번 나온다. ★전부 같은 글자이니
+     ★한꺼번에 바꿔라(찾아 바꾸기 한 번이면 된다):
+     ⓐ <meta http-equiv="refresh"> 의 url=   (자바스크립트 꺼진 사람)
+     ⓑ <a id="go"> 의 href=                  (손으로 누르는 사람)
+     ⓒ 스크립트의 var DEST                    (대부분의 사람)
+     ⚠️ 하나만 고치면 ★사람마다 다른 곳으로 간다. 증상이 "어떤 사람은 되는데 어떤
+        사람은 옛날 데로 간다" 라 ★원인이 안 보인다 — 그래서 아래 스크립트가 셋이
+        어긋나면 ★콘솔에 경고를 찍는다(지우지 말 것).
+  ⚠️ 사이트 첫 화면(../index.html)의 배지 버튼은 ★스토어로 ★바로 간다(여기를 안 거친다).
+     일부러 그렇게 뒀다 — 주된 길에 ★한 번 더 거치는 단계를 넣으면 느려진다.
+     ⇒ 스토어 주소가 바뀌면 ★거기 2곳 + 여기 2곳 = ★4곳이다. 같이 고칠 것.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<meta http-equiv="refresh" content="2;url=https://play.google.com/store/apps/details?id=com.tbic.hapster">
+<style>
+  html,body{margin:0;height:100%;background:#0A0B0C;color:#F1F3F4;
+    font-family:"Noto Sans KR",system-ui,-apple-system,sans-serif;color-scheme:dark}
+  .box{min-height:100%;display:flex;flex-direction:column;align-items:center;
+       justify-content:center;gap:14px;padding:24px;text-align:center}
+  .bi{font:900 13px/1 system-ui;letter-spacing:.22em;color:#CCFF00}
+  .msg{font-size:15px;font-weight:700}
+  .sub{font-size:13px;color:#8C949C}
+  a.go{margin-top:4px;display:inline-block;padding:13px 22px;border-radius:10px;
+       background:#CCFF00;color:#0A0B0C;font-weight:900;font-size:15px;text-decoration:none}
+  .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#CCFF00;
+       margin:0 2px;animation:b 1s infinite ease-in-out}
+  .dot:nth-child(2){animation-delay:.15s} .dot:nth-child(3){animation-delay:.3s}
+  @keyframes b{0%,80%,100%{opacity:.25}40%{opacity:1}}
+  @media (prefers-reduced-motion:reduce){.dot{animation:none;opacity:.7}}
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BXJRZP0E0L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BXJRZP0E0L');
+</script>
+
+<div class="box">
+  <div class="bi">HAPSTER</div>
+  <div class="msg">구글 플레이로 이동 중<span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  <div class="sub">잠시 기다려 주세요. 안 넘어가면 아래를 눌러 주세요.</div>
+  <!-- ★③ 손으로 누르는 길. 스크립트가 주소에 꼬리표를 붙이면 이 링크도 같이 바꾼다. -->
+  <a class="go" id="go" href="https://play.google.com/store/apps/details?id=com.tbic.hapster">안드로이드 설치</a>
+</div>
+
+<script>
+(function(){
+  /* ★★목적지 (ⓒ) — 위 meta refresh(ⓐ) · 보이는 링크(ⓑ)와 ★같은 글자여야 한다 */
+  var DEST = 'https://play.google.com/store/apps/details?id=com.tbic.hapster';
+  var PLATFORM = 'android';
+
+  /* ★셋이 어긋났나 ★스스로 본다 — 사람이 기억으로 지키는 규칙은 샌다 */
+  (function selfCheck(){
+    var m = document.querySelector('meta[http-equiv="refresh"]');
+    var metaUrl = m ? (m.getAttribute('content')||'').replace(/^[^;]*;\s*url=/i,'') : '';
+    var aUrl = (document.getElementById('go')||{}).href || '';
+    if (metaUrl !== DEST || aUrl !== DEST) {
+      console.warn('[shortlink] ★목적지가 서로 다르다 — 셋을 같이 고쳐라',
+        {meta: metaUrl, link: aUrl, script: DEST});
+    }
+  })();
+
+  /* ★어디서 눌렀나 — `?s=insta` 처럼 짧게 주거나 표준 `?utm_source=` 를 준다.
+     ⚠️ 받은 값을 ★그대로 주소에 넣지 않는다. 모르는 글자가 섞이면 버린다
+        (남이 만든 주소가 우리 링크를 통해 엉뚱한 값을 흘리는 길을 막는다). */
+  var q = new URLSearchParams(location.search);
+  var raw = q.get('s') || q.get('utm_source') || '';
+  var src = /^[A-Za-z0-9_-]{1,32}$/.test(raw) ? raw : '';
+
+  /* ★플레이스토어는 `referrer` 를 받아 ★설치까지 출처를 이어준다(클릭만이 아니라 설치 수).
+     ⚠️ 붙이는 방식이 `?` 인지 `&` 인지를 ★주소를 보고 정한다 — DEST 에서 물음표가
+        사라지는 날 `&` 를 박아두면 주소가 조용히 깨진다. */
+  var url = DEST;
+  if (src) url += (url.indexOf('?') > -1 ? '&' : '?')
+               + 'referrer=' + encodeURIComponent('utm_source=' + src + '&utm_medium=shortlink');
+
+  var a = document.getElementById('go');
+  if (a) a.href = url;
+
+  /* ★GA 가 셀 시간을 준다 — 다만 ★무한정 기다리지 않는다.
+     event_callback 이 오면 바로 가고, 안 오면(차단·네트워크) ★700ms 에 그냥 간다.
+     ⚠️ 이 보호가 없으면 ★광고 차단기를 쓰는 사람은 영영 안 넘어간다(= 링크가 죽은 것처럼 보인다). */
+  var gone = false;
+  function go(){ if (gone) return; gone = true; location.replace(url); }
+
+  try {
+    gtag('event', 'shortlink_' + PLATFORM, {
+      source: src || '(none)',
+      from: document.referrer || '(direct)',
+      event_callback: go
+    });
+  } catch (e) { /* gtag 가 아예 없어도 아래 타이머가 보낸다 */ }
+
+  setTimeout(go, 700);
+})();
+</script>
