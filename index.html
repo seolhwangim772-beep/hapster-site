@@ -5,6 +5,10 @@
 <title>HAPSTER RUN &amp; RAVE</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<!-- ★2026-11-06 — 언어를 바꾸면 배지 img 를 ★갈아끼운다(아래 T 표). 미리 받아 두지 않으면
+     ★전환하는 순간 배지가 깜빡 빈다(고장처럼 보인다). prefetch 라 첫 화면을 늦추지 않는다. -->
+<link rel="prefetch" as="image" href="badges/google-play-en.png">
+<link rel="prefetch" as="image" href="badges/google-play-ja.png">
 <style>
 /* 레이아웃: 한 줄 세로 스크롤. 히어로에 레벨미터 한 덩어리, 나머지는 조용하게 */
 :root{
@@ -163,8 +167,43 @@ p{margin:0}
 .btn span{font-size:12.5px;font-weight:500;opacity:.72}
 .btn:hover{transform:translateY(-2px)}
 .btn:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
-.b1{background:var(--lime);color:#0A0B0C}
-.b1:hover{background:#DBFF3D}
+/* ══ 안드로이드 = 구글 플레이 ★공식 배지 (2026-11-06 · 대표 지시) ══════════════════
+   ★규칙 정본 — 구글 Partner Marketing Hub 에서 2026-11-06 에 직접 읽은 것:
+     · 디지털 ★최소 높이 28px        · 주위 ★여백 = 배지 높이의 1/4 (사방)
+     · 색·요소 배치·워드마크 비율 ★변형 금지 · 저해상도 금지
+     · 다른 스토어 배지와 나란히 두면 ★같거나 더 크게   · 배경은 단색(대비 충분)
+   ★★숫자는 ★`--vis` 하나뿐이다 (= ★보이는 배지 높이). 여백·캔버스 높이는 ★거기서 파생된다.
+     ⚠️ 여백을 `11px` 처럼 손으로 적으면 --vis 를 바꿀 때 ★한쪽만 바뀌어 1/4 규칙이
+       ★조용히 깨진다(화면은 멀쩡해 보인다 — 아무도 안 아프다). 그래서 calc 로 묶었다.
+   ⚠️⚠️ `.btn` 을 ★일부러 안 붙였다 — `.cta .btn`(폰 블록)의 `padding:13px 8px` 와
+     `flex:1 1 0` 가 배지를 ★눌러 비율을 깬다. hover·focus 만 아래에 따로 들었다.
+   ⚠️⚠️ 배지 PNG 는 ★언어마다 ★그림 크기가 다르다 (알파로 실측 · 2026-11-06):
+       한국어·일본어  캔버스 646x250 · 그림 646x192   (내장 여백 위아래 29 · ★좌우 0)
+       영어          캔버스 646x250 · 그림 564x168   (내장 여백 사방 41)
+     ⇒ ★캔버스 높이로 맞추면 ★영어만 배지가 12.5% 작아진다(언어 전환 때 눈에 띄게 튄다).
+       그래서 `data-art`(그림 높이)로 ★보이는 높이를 맞춘다. ★내장 여백이 좌우 0 인 쪽이
+       있으므로 1/4 여백은 ★CSS 가 혼자 책임져야 한다(내장 여백에 기대면 안 된다). */
+.b1{--vis:clamp(30px,calc(11vw - 6px),46px);   /* ★30px 바닥 = 구글 최소 28px 보다 위 */
+    display:inline-flex;align-items:center;justify-content:center;
+    /* ⚠️ align-items 가 ★stretch(기본)면 img 가 ★가로로 늘어나 비율이 깨진다 */
+    padding:calc(var(--vis)/4 + 2px);           /* ★여백 = 배지 높이 1/4 ★+2px — 파생이다.
+       ⚠️ +2px 는 ★멋이 아니다: 1/4 로 딱 맞추면 실측이 11.5 대 11.5 로 ★경계에 선다.
+          소수 픽셀 반올림 한 번에 규칙 미달이 되고, 그건 ★화면으로는 안 보인다. */
+    text-decoration:none;transition:transform .14s ease,opacity .14s ease}
+.b1:hover{transform:translateY(-2px);opacity:.88}  /* ★이미지는 안 건드린다(움직임만) */
+.b1:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+/* ★★내장 투명 여백을 ★음수 마진으로 당긴다 — 그래야 ★자리 크기가 언어와 무관해진다.
+   ⚠️ 왜 필요한가(실측으로 드러났다): 영어 배지는 캔버스에 ★사방 41px 투명 여백이 있어
+     ★같은 배지 높이인데도 img 자리가 ★16px 더 넓었다. 그 16px 때문에 360px 폰에서
+     ★영어만 아이폰 버튼이 아래 줄로 내려갔다(한국어·일본어는 나란히) — 언어마다 배치가 달라졌다.
+   ⇒ 당기면 ★자리 = 보이는 배지 로 통일된다. ★이미지는 안 자른다(투명 영역이 padding 위로
+     겹칠 뿐이다) → 구글 "변형 금지" 와 무관하고, 1/4 여백은 위 padding 이 ★혼자 보장한다.
+   ★숫자 29·41·192·168 은 ★알파로 실측한 값이다(위 표). 배지를 교체하면 ★다시 재야 한다. */
+.pbadge{display:block;width:auto;               /* ⚠️ width 를 같이 주면 비율이 깨진다 */
+        height:calc(var(--vis) * 250 / 192);    /* 한국어·일본어 — 그림 192 / 캔버스 250 */
+        margin:calc(var(--vis) * -29 / 192) 0}  /* 내장 여백 위아래 29 · 좌우 0 */
+.pbadge[data-art="168"]{height:calc(var(--vis) * 250 / 168);   /* 영어 — 그림 168 */
+        margin:calc(var(--vis) * -41 / 168)}    /* 내장 여백 사방 41 */
 .b2{background:var(--ink3);color:var(--fg);border:1px solid var(--line)}
 .b2:hover{background:#242930}
 .off{opacity:.42;cursor:default;pointer-events:none}
@@ -265,9 +304,15 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
   .tag3{font-size:25px}
   .solop{margin-top:10px;font-size:13.5px;line-height:1.62}
   .solop2{margin-top:10px;font-size:15px}
-  .cta{flex-wrap:nowrap;gap:9px;margin-top:24px}
+  /* ★2026-11-06 — 배지는 ★줄어들면 안 된다(비율이 깨진다). 그래서 `nowrap` 을 ★버렸다:
+       배지는 제 크기(flex 0 0 auto 와 같다 — `.btn` 이 아니니 위 규칙이 안 걸린다),
+       아이폰 버튼은 `150px` 부터 자라고 ★자리가 모자라면 스스로 아래로 내려간다.
+     ⇒ ★분기점을 새로 안 만들었다. 320px 짜리 좁은 폰에서도 배지가 안 눌린다. */
+  .cta{flex-wrap:wrap;gap:9px;margin-top:24px}
   .cta .btn{flex:1 1 0;min-width:0;padding:13px 8px;
             align-items:center;text-align:center;justify-content:center}
+  .cta .b2{flex:1 1 140px}        /* ★basis 0 이면 안 내려가고 ★찌그러진다.
+     ★140px = 320px 폰에서도 배지 옆에 ★나란히 들어가는 값(실측). 더 좁아지면 스스로 내려간다. */
   .cta .btn strong{font-size:14.5px;word-break:keep-all}
   .cta .btn span{font-size:11px;line-height:1.35;word-break:keep-all}
 
@@ -346,16 +391,24 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
 
     <div class="cta">
       <!-- ★ 주소 두 곳만 바꾸면 됩니다 -->
-      <!-- ★★2026-11-06 구글 플레이 출시 완료 → APK 직접 내려받기를 ★스토어 링크로 바꿨다(대표 지시).
-           ⚠️ 바꿀 자리가 ★주소 하나가 아니다 — 세 군데가 같이 움직인다:
-             ① 이 href(그리고 .end 의 같은 버튼)  ★href 는 언어 공통이다(아래 T 표는 innerHTML 만 바꾼다)
-             ② 버튼 밑줄 글자 — ★3개 국어 전부(아래 T 표 `.cta .b1 span`). 주소만 바꾸면 영어·일본어에
-                "APK download"가 남아 ★말과 동작이 어긋난다
-             ③ 맨 아래 GA 사건 판정 — `.apk` 로만 세고 있었다. 안 고치면 download_android 가 ★조용히 0건이 된다
-           ⚠️ 아이폰(b2)은 ★그대로 TestFlight 다 — 애플은 아직 심사 중이다(대표 2026-11-06).
+      <!-- ★★2026-11-06 안드로이드 버튼의 ★두 번째 변경(대표 지시) — 같은 날 두 번 바뀌었다:
+             ⓐ 오전: APK 직접 내려받기 → ★플레이스토어 링크 (구글 플레이 출시 완료)
+             ⓑ 오후: 글자 버튼 → ★구글 플레이 공식 배지 이미지 (지금 이 꼴)
+           ★바꿀 자리가 ★이 태그 하나가 아니다. 네 군데가 같이 움직인다:
+             ① 이 href (그리고 .end 의 같은 버튼)   ★href 는 ★언어 공통이다
+                (아래 T 표는 innerHTML 만 바꾼다 — 속성은 안 건드린다)
+             ② 아래 T 표의 ★`.cta .b1` — ★배지 img 를 통째로 갈아끼운다(언어별 파일이 다르다)
+             ③ CSS `.b1`·`.pbadge` — ★구글 규칙(최소 28px · 여백 1/4 · 변형 금지)이 거기 걸려 있다
+             ④ 맨 아래 GA 사건 판정 — href 로 가른다(배지라서 글자로는 못 가린다)
+           ⚠️ `data-art` 는 ★그 PNG 안 ★그림의 높이다(한국어·일본어 192 · 영어 168).
+              캔버스는 셋 다 646x250 인데 ★그림 크기가 달라서, 이 값으로 ★보이는 높이를 맞춘다.
+              ★언어를 더하면 그 배지를 ★알파로 실측해 넣어라 — 캔버스 높이로 맞추면 배지가 튄다.
+           ⚠️ 아이폰(b2)은 ★글자 버튼 그대로다 — 아직 TestFlight 라 ★앱스토어 배지를 쓰면 안 된다.
+              애플 승인 뒤 배지로 바꿀 때는 ★두 배지 크기를 같게 할 것(구글 규칙: 같거나 더 크게).
            ⚠️ 옛 APK 파일(hapster.apk · download/hapster.apk)은 ★지우지 않았다 — 뿌려진 옛 주소가 죽는다. -->
-      <a class="btn b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
-        <strong>안드로이드 바로 설치</strong><span>플레이스토어에서 받기</span></a>
+      <a class="b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
+        <img class="pbadge" data-art="192" width="646" height="250"
+             src="badges/google-play-ko.png" alt="Google Play에서 다운로드하기"></a>
       <a class="btn b2" href="https://testflight.apple.com/join/DtBcKVKC" target="_blank" rel="noopener">
         <strong>아이폰 바로 설치</strong><span>TestFlight로 받기</span></a>
     </div>
@@ -449,9 +502,11 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
     <h2 style="margin-top:10px">크루방에 큐알 하나만 올리면 됩니다.<br>
       오늘 밤, 크루 전원이 <span class="lime">같은 비트</span>로 달립니다.</h2>
     <div class="cta">
-      <!-- ★2026-11-06 — 위 히어로 버튼과 ★같이 바꿨다(한쪽만 고치면 아래 버튼만 APK 로 간다). 경위는 그 자리 주석. -->
-      <a class="btn b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
-        <strong>안드로이드 바로 설치</strong><span>플레이스토어에서 받기</span></a>
+      <!-- ★2026-11-06 — 위 히어로 버튼과 ★같이 바꿨다(한쪽만 고치면 아래만 옛 꼴로 남는다).
+           경위·구글 규칙·data-art 의 뜻은 ★그 자리 주석에 있다. 여기와 ★글자가 같아야 한다. -->
+      <a class="b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
+        <img class="pbadge" data-art="192" width="646" height="250"
+             src="badges/google-play-ko.png" alt="Google Play에서 다운로드하기"></a>
       <a class="btn b2" href="https://testflight.apple.com/join/DtBcKVKC" target="_blank" rel="noopener">
         <strong>아이폰 바로 설치</strong><span>TestFlight로 받기</span></a>
     </div>
@@ -478,11 +533,13 @@ en:{
 '.tag3':`Running alone? Still works.`,
 '.solop':`<b>Keep the music you already play.</b> No new playlist, nothing to pick. Just open HAPSTER alongside it and a DJ rides on top.<br>Solo runs were never boring because of your legs — it was the <b>audio</b>.`,
 '.solop2':`Try it for just <b>1 km</b>.`,
-/* ★2026-11-06 — 플레이 출시로 "APK download" 가 거짓이 됐다.
-   ★자리를 ★하나로 합쳤다(옛날엔 히어로·맨아래가 달라 선택자가 둘이었다) — b2 와 같은 꼴이라
-   앞으로 ★한 줄만 고치면 두 버튼이 같이 간다(한쪽만 바뀌는 사고를 구조로 막는다). */
-'.cta .b1 strong':`Install on Android`,
-'.cta .b1 span':`Get it on Google Play`,
+/* ★★2026-11-06 — 안드로이드는 ★공식 배지라 ★바꿀 글자가 없다. 그래서 `strong`·`span` 이 아니라
+   ★`.cta .b1` 을 통째로(= img 태그) 갈아끼운다. 이게 "언어를 바꾸면 배지도 그 언어로" 의 구현이다.
+   ⚠️⚠️ `.cta .b1 strong` 같은 ★안쪽 선택자를 ★같이 두면 안 된다 — 바깥(.cta .b1)을 먼저
+     갈아끼우는 순간 안쪽 요소가 ★사라져서, 그 줄은 ★찾을 것이 0개가 되어 조용히 아무 일도 안 한다
+     (에러도 안 난다 — 그냥 한 언어만 안 바뀐 채로 남는다).
+   ⚠️ 영어 배지는 ★그림이 작다(564x168) → ★`data-art="168"`. 안 맞추면 ★영어에서만 배지가 작아진다. */
+'.cta .b1':`<img class="pbadge" data-art="168" width="646" height="250" src="badges/google-play-en.png" alt="Get it on Google Play">`,
 '.cta .b2 strong':`Install on iPhone`,
 '.cta .b2 span':`Get it via TestFlight`,
 '.crew .eyebrow':`With your crew`,
@@ -531,9 +588,9 @@ ja:{
 '.tag3':`ひとりで走ってもいい。`,
 '.solop':`<b>いつもの音楽はそのままで。</b>プレイリストを変える必要も、選び直す必要もありません。ハプスターを一緒に起動するだけで、その上にDJが乗ります。<br>ひとり走が退屈だったのは体力のせいではなく、<b>音のせい</b>でした。`,
 '.solop2':`まずは <b>1km</b> だけ走ってみてください。`,
-/* ★2026-11-06 — 영어 표와 같은 이유로 한 자리로 합쳤다(위 주석 참조). */
-'.cta .b1 strong':`Androidにインストール`,
-'.cta .b1 span':`Google Playで受け取る`,
+/* ★2026-11-06 — 영어 표와 같은 이유로 ★`.cta .b1` 통째로 바꾼다(그 주석 참조).
+   일본어 배지는 ★그림이 한국어와 같다(646x192) → `data-art="192"`. */
+'.cta .b1':`<img class="pbadge" data-art="192" width="646" height="250" src="badges/google-play-ja.png" alt="Google Play で手に入れよう">`,
 '.cta .b2 strong':`iPhoneにインストール`,
 '.cta .b2 span':`TestFlightで受け取る`,
 '.crew .eyebrow':`クルーと一緒なら`,
