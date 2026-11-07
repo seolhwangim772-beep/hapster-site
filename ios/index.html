@@ -11,31 +11,41 @@
   구조는 ../android/index.html 과 ★같다(세 겹: meta refresh · 자바스크립트 · 보이는 링크).
   ★왜 세 겹인지는 그 파일 주석에 적어 뒀다.
 
-  ★★★애플 승인이 나면 ★여기를 바꾼다 — ★이 파일 안에 주소가 ★세 번 나온다(전부 같은 글자 ·
-     찾아 바꾸기 한 번). 셋이 어긋나면 아래 스크립트가 ★콘솔에 경고를 찍는다:
-     ⓐ <meta http-equiv="refresh"> 의 url=   ⓑ <a id="go"> 의 href=   ⓒ 스크립트의 var DEST
-   ★그리고 ★첫 화면·운용도 같이 (ⓒ 가 두 번 쓰여 있던 것을 2026-11-06 에 바로잡았다):
-     ⓓ ../index.html 의 아이폰 버튼(b2) ★2곳 — 글자도 "TestFlight로 받기" 가 거짓이 된다
-     ⓔ ../index.html 의 GA 판정 — 지금 `href.indexOf('testflight')` 로 가른다.
-        앱스토어 주소로 바꾸면 ★그 줄도 같이 고쳐야 download_ios 가 안 끊긴다
-     ⓕ 아이폰 버튼을 ★앱스토어 배지로 바꿀 때는 ★구글 플레이 배지와 ★크기를 같게 할 것
-        (구글 규칙: 다른 스토어 배지와 같거나 더 크게 — 자세한 건 ../index.html 의 .b1 주석)
-     ⓖ ★공개 게시물의 링크를 ★다시 `hapster.kr` 로 되돌린다 (대표 확정 2026-11-06)
-        — 승인 뒤에는 ★아이폰 사용자도 오므로 ★한 주소가 둘 다 받아야 한다.
-          지금은 아래 사정 때문에 ★플레이스토어 직링크를 쓰고 있다.
-  ★새 주소 꼴: https://apps.apple.com/kr/app/id<앱ID>
-     ⚠️ 앱ID 는 ★승인 뒤 App Store Connect 에서 확인한다. ★지금은 모른다 — 추측해 넣지 말 것.
-  ⚠️ 지금은 ★TestFlight 라 ★아무나 못 깐다(외부 테스터 자리 수 제한). 그래서 이 주소를
-     넓게 뿌리면 "안 깔린다" 문의가 온다 — ★승인 전에는 가까운 사람에게만 줄 것.
-     ★★공개 게시물(유튜브 설명·고정댓글·인스타 캡션)에는 ★플레이스토어 ★직링크를 쓴다.
-       ★`hapster.kr` 이 ★아니다 (대표 확정 2026-11-06 — 같은 날 ★바뀐 결정이다).
+  ★★★2026-11-07 ★애플 승인 — ★TestFlight 를 걷어내고 ★앱스토어로 바꿨다.
+     목적지 = https://apps.apple.com/kr/app/id6827808995
+     ★앱ID `6827808995` 은 ★추측이 아니다 — bundleId `com.tbic.hapster` 로
+       `itunes.apple.com/lookup?bundleId=…&country=kr` 를 때려 받은 ★trackId 다
+       (trackName=HAPSTER · sellerName=TBIC Co.,Ltd · version 1.1 까지 대조했다).
+     ★이 파일 안에 주소가 ★세 번 나온다(전부 같은 글자 · 찾아 바꾸기 한 번).
+       셋이 어긋나면 아래 스크립트가 ★콘솔에 경고를 찍는다:
+       ⓐ <meta http-equiv="refresh"> 의 url=   ⓑ <a id="go"> 의 href=   ⓒ 스크립트의 var DEST
+
+  ★★승인일에 ★같이 끝낸 일 — 옛 체크목록 ⓓ~ⓖ 다. ★결과를 적어 둔다:
+     ⓓ ✅ ../index.html 의 아이폰 버튼 ★2곳 — ★앱스토어 공식 배지로 교체(글자 버튼이 사라졌다)
+     ⓔ ✅ ../index.html 의 GA 판정 — `testflight` → ★`apps.apple.com` (★같은 커밋에서 고쳤다)
+          ⚠️ 이걸 안 고치면 ★download_ios 가 ★조용히 0건이 된다 — 주소를 바꾼 그 순간부터다
+     ⓕ ✅ 두 배지 ★크기를 같게 — `--vis` ★한 선언을 `.cta` 에 두고 둘이 ★나눠 쓴다
+          ★애플 최소 높이가 40px 이라 바닥을 30 → ★40px 로 올렸다(구글 최소 28 보다 위다)
+          ★애플 규칙대로 ★앱스토어 배지를 ★먼저 뒀다("Place the App Store badge first
+            in the lineup of badges." — 원문은 ../index.html 의 배지 CSS 주석에)
+     ⓖ ⏳ ★공개 게시물 링크 — ★대표 확인 대기. 바로 아래 단락이 그 얘기다
+
+  ★★어디에 무엇을 뿌리나 — ★승인으로 ★사정이 바뀐 자리다
+     11-06 결정: 공개 게시물(유튜브 설명·고정댓글·인스타 캡션)에는 ★플레이스토어 ★직링크.
        왜: 모르는 사람에게 `hapster.kr` 은 ★낯선 주소라 ★눌리기 전에 의심받는다.
-           `play.google.com` 으로 시작해야 신뢰가 간다.
-       ⇒ 그래서 ★공개 자리에는 ★아이폰 링크가 아예 안 나간다(안드로이드 직링크 하나뿐).
-     ⇒ 애플 승인이 나면 이 제한이 풀린다. 그때 위 ⓐ~ⓖ 를 한 번에 정리한다(대표 확정).
+     11-06 에 ★같이 정해 둔 것: "애플 승인이 나면 공개 자리를 ★다시 `hapster.kr` 로 돌린다"
+       왜: 승인 뒤에는 ★아이폰 사용자도 오므로 ★한 주소가 둘 다 받아야 한다.
+     ⚠️⚠️ ★그 조건이 ★오늘 충족됐다(2026-11-07). 그런데 ★"낯선 주소라 의심받는다" 는 이유는
+       ★그대로 남아 있다 — ★두 이유가 부딪힌다. ★대표가 고를 몫이라 ★내가 안 바꿨다.
+       ⇒ ★지금 상태 = 공개 자리는 ★플레이스토어 직링크(11-06 그대로) · ★대표 확정 대기.
+       ⇒ `hapster.kr` 로 돌리기로 하면 ★고칠 코드는 ★없다 — ★이 단락만 고친다.
+     ★짧은 주소(이 페이지)를 쓰는 자리는 ★그대로다 — ★글자로 적거나 불러줘야 하는 곳:
+        틱톡 소개글(링크 칸이 없다) · 명함 · 오프라인 QR · 입으로 불러줄 때 · 크루장 DM
+  ⚠️ ★TestFlight 는 ★끝났다 — 이제 ★누구나 앱스토어에서 깐다(외부 테스터 자리 수 제한이 사라졌다).
+     ⇒ ★"승인 전에는 가까운 사람에게만" 이던 제한은 ★없어졌다. 이 주소는 넓게 뿌려도 된다.
   ════════════════════════════════════════════════════════════════════════════
 -->
-<meta http-equiv="refresh" content="2;url=https://testflight.apple.com/join/DtBcKVKC">
+<meta http-equiv="refresh" content="2;url=https://apps.apple.com/kr/app/id6827808995">
 <style>
   html,body{margin:0;height:100%;background:#0A0B0C;color:#F1F3F4;
     font-family:"Noto Sans KR",system-ui,-apple-system,sans-serif;color-scheme:dark}
@@ -63,16 +73,17 @@
 
 <div class="box">
   <div class="bi">HAPSTER</div>
-  <div class="msg">TestFlight로 이동 중<span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  <div class="msg">App Store로 이동 중<span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
   <div class="sub">잠시 기다려 주세요. 안 넘어가면 아래를 눌러 주세요.</div>
-  <a class="go" id="go" href="https://testflight.apple.com/join/DtBcKVKC">아이폰 설치</a>
+  <!-- ⚠️ "App Store" 는 ★번역하지 않는다 — 애플 가이드라인이 금지한다(배지 alt 와 같은 이유). -->
+  <a class="go" id="go" href="https://apps.apple.com/kr/app/id6827808995">아이폰 설치</a>
 </div>
 
 <script>
 (function(){
   /* ★★목적지 (ⓒ) — 위 meta refresh(ⓐ) · 보이는 링크(ⓑ)와 ★같은 글자여야 한다.
-     ★애플 승인 뒤: 'https://apps.apple.com/kr/app/id<앱ID>' */
-  var DEST = 'https://testflight.apple.com/join/DtBcKVKC';
+     ★2026-11-07 애플 승인으로 ★TestFlight 에서 바뀐 값이다(앱ID 는 itunes lookup 으로 확인). */
+  var DEST = 'https://apps.apple.com/kr/app/id6827808995';
   var PLATFORM = 'ios';
 
   /* ★셋이 어긋났나 ★스스로 본다 — 사람이 기억으로 지키는 규칙은 샌다 */
@@ -90,10 +101,11 @@
   var raw = q.get('s') || q.get('utm_source') || '';
   var src = /^[A-Za-z0-9_-]{1,32}$/.test(raw) ? raw : '';
 
-  /* ⚠️ 안드로이드와 ★다른 점 — 주소에 ★꼬리표를 안 붙인다.
-     TestFlight 가입 링크는 `referrer` 같은 값을 ★안 받는다(붙이면 지저분하기만 하다).
-     출처는 ★GA 쪽으로만 남긴다. 앱스토어로 바꾼 뒤에도 같다(애플은 pt·ct 를 쓰는데
-     그건 ★제휴 토큰이 있어야 한다 — 없으면 넣지 말 것). */
+  /* ⚠️ 안드로이드와 ★다른 점 — 주소에 ★꼬리표를 안 붙인다. ★앱스토어로 바뀐 뒤에도 같다.
+     ★애플은 구글의 `referrer` 처럼 ★출처를 설치까지 이어주는 값을 ★안 받는다.
+     ⚠️ `?ct=`·`?pt=` 는 ★캠페인 링크(App Analytics)용인데 ★제휴/캠페인 토큰이 있어야 한다 —
+        ★없이 붙이면 주소만 지저분해지고 집계는 ★안 생긴다. ★붙이지 말 것(대표 지시 2026-11-07).
+     ⇒ 출처는 ★GA 쪽으로만 남긴다(아래 shortlink_ios 의 source). */
   var url = DEST;
 
   var gone = false;
