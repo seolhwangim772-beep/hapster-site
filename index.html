@@ -21,7 +21,22 @@
   --disp:"Archivo","Noto Sans KR",system-ui,sans-serif;
   --body:"Noto Sans KR","Archivo",system-ui,sans-serif;
   color-scheme:dark;
+  /* ★★줄바꿈 규칙 — ★정본은 이 한 줄이다 (2026-11-07 신설)
+     한국어는 `keep-all` 이 맞다 — 단어 중간에서 끊기는 꼴을 막는다(그래서 넣은 값이다).
+     ⚠️⚠️ 그런데 ★일본어에 그대로 걸면 ★글이 화면 밖으로 삐져나간다:
+       일본어는 ★단어 사이에 공백이 없어 ★끊을 자리가 글자 사이뿐인데,
+       `keep-all` 이 ★바로 그 자리를 금지한다 ⇒ 긴 문장이 ★한 줄로 쭉 뻗는다.
+     ★실측(2026-11-07 · 320·360·390·430px): 일본어에서 문서 폭이 ★471px 로 고정됐다
+       (= 좁은 폰에서 ★가로 스크롤). 한국어·영어는 ★네 폭 모두 멀쩡했다.
+       ★keep-all 만 끄면 ★네 폭 전부 넘침이 사라지는 것을 ★대조로 확인했다 — 범인이 이것 하나다.
+     ⇒ ★값을 토큰 하나로 모으고 ★일본어에서만 푼다. 아래 `html[lang="ja"]` 한 줄이 그 일을 한다.
+     ⚠️ 새로 쓰는 규칙도 ★`word-break:var(--wb)` 로 써라 — `keep-all` 이라고 직접 적으면
+       ★그 줄만 일본어에서 다시 삐져나간다(화면으로는 한국어만 봐서 ★안 보인다). */
+  --wb:keep-all;
 }
+/* ★언어는 `apply(lang)` 이 `documentElement.lang` 에 써 넣는다(맨 아래 i18n 스크립트).
+   ⇒ 언어를 바꾸는 즉시 이 토큰이 따라 바뀐다. 자바스크립트가 따로 할 일은 ★없다. */
+html[lang="ja"]{--wb:normal}
 *{box-sizing:border-box}
 body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--body);
      font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
@@ -66,11 +81,11 @@ p{margin:0}
 .logo{width:clamp(104px,11vw,142px);max-width:100%;height:auto;display:block}
 .mark span{font-family:var(--body);font-weight:700;font-size:clamp(11px,1.6vw,12.5px);
            letter-spacing:.22em;color:var(--mut)}
-.tag{word-break:keep-all;margin-top:clamp(54px,8.4vw,112px);
+.tag{word-break:var(--wb);margin-top:clamp(54px,8.4vw,112px);
      font-size:clamp(34px,6.4vw,64px);font-weight:900;line-height:1.2;letter-spacing:-.045em;
      -webkit-text-stroke:.9px currentColor;paint-order:stroke fill}
 /* 손글씨 한 줄 — 사진 위에 얹힌다 */
-.tagsub{word-break:keep-all;margin-top:clamp(22px,3.4vw,34px);
+.tagsub{word-break:var(--wb);margin-top:clamp(22px,3.4vw,34px);
         font-family:"Nanum Brush Script","Noto Sans KR",cursive;font-weight:400;
         font-size:clamp(25px,4.2vw,34px);line-height:1.35;letter-spacing:0}
 .tagsub,.tagsub .lime{color:var(--fg)}   /* 손글씨는 흰색 단색 */
@@ -96,7 +111,7 @@ p{margin:0}
       letter-spacing:.08em;background:transparent;color:var(--mut)}
 .lang button:hover{color:var(--fg)}
 .lang button.on{background:var(--lime);color:#0A0B0C}
-.tag2{word-break:keep-all;margin-top:clamp(34px,5.4vw,66px);
+.tag2{word-break:var(--wb);margin-top:clamp(34px,5.4vw,66px);
       font-size:clamp(15.5px,2.6vw,19px);font-weight:800;line-height:1.55;letter-spacing:-.01em}
 /* 헤드카피 둘째 줄 하이라이트 */
 .hl{color:var(--lime);background:rgba(204,255,0,.11);
@@ -109,28 +124,28 @@ p{margin:0}
       display:grid;gap:12px}
 .feat li{display:flex;gap:11px;align-items:flex-start}
 .feat i{flex:none;font-style:normal;font-size:15px;line-height:1.62;width:19px}
-.feat p{word-break:keep-all;font-size:clamp(14px,2.2vw,15.5px);line-height:1.62;color:var(--mut)}
+.feat p{word-break:var(--wb);font-size:clamp(14px,2.2vw,15.5px);line-height:1.62;color:var(--mut)}
 .feat b{color:var(--fg);font-weight:800}
 
 .crew{border-top:1px solid var(--line)}
-.crewp{word-break:keep-all;margin-top:16px;line-height:1.8;color:var(--mut);
+.crewp{word-break:var(--wb);margin-top:16px;line-height:1.8;color:var(--mut);
        font-size:clamp(14.5px,2.3vw,16.5px);max-width:48ch}
 .crewp b{color:var(--fg);font-weight:800}
 /* 혼자 뛰는 사람에게 — 두 번째 헤드 */
 .solo{margin-top:clamp(30px,4.6vw,56px);padding:clamp(20px,3vw,28px) clamp(20px,3vw,30px);
       border-radius:14px;background:rgba(17,20,23,.80);backdrop-filter:blur(2px);
       border:1px solid var(--line);border-top:3px solid var(--lime);max-width:46rem}
-.tag3{word-break:keep-all;font-size:clamp(24px,4.2vw,40px);font-weight:900;
+.tag3{word-break:var(--wb);font-size:clamp(24px,4.2vw,40px);font-weight:900;
       line-height:1.25;letter-spacing:-.035em;color:var(--lime);
       -webkit-text-stroke:.5px currentColor}
-.solop{word-break:keep-all;margin-top:14px;font-size:clamp(14.5px,2.3vw,16.5px);
+.solop{word-break:var(--wb);margin-top:14px;font-size:clamp(14.5px,2.3vw,16.5px);
        line-height:1.75;color:var(--mut)}
 .solop b{color:var(--fg);font-weight:800}
-.solop2{word-break:keep-all;margin-top:14px;font-size:clamp(15px,2.5vw,18px);
+.solop2{word-break:var(--wb);margin-top:14px;font-size:clamp(15px,2.5vw,18px);
         font-weight:800;color:var(--fg)}
 .solop2 b{color:var(--lime);font-weight:900}
 .lede b{color:var(--fg);font-weight:700}
-.lede{word-break:keep-all;line-height:1.85;margin-top:clamp(26px,4vw,44px);
+.lede{word-break:var(--wb);line-height:1.85;margin-top:clamp(26px,4vw,44px);
       color:var(--mut);font-size:clamp(15px,2.4vw,17px);max-width:48ch}
 
 /* 레벨미터 — 큼직하게 여섯, 사진 위에 반투명으로 · 피크는 잠깐 멈췄다 내려온다 */
@@ -244,7 +259,7 @@ p{margin:0}
       font-weight:700;border:1px solid var(--line)}
 .qrdl:hover{background:#242930;border-color:var(--lime);color:var(--lime)}
 
-.noise{word-break:keep-all;margin-top:20px;padding:18px 22px;border-radius:12px;
+.noise{word-break:var(--wb);margin-top:20px;padding:18px 22px;border-radius:12px;
        background:var(--ink2);border-left:3px solid var(--lime);
        color:var(--mut);font-size:clamp(14.5px,2.3vw,16px);line-height:1.7;max-width:62ch}
 .noise b{color:var(--fg);font-weight:700}
@@ -289,7 +304,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
   /* 전체 리듬 */
   section{padding-block:52px}
   .eyebrow{font-size:11px;letter-spacing:.16em}
-  h2{letter-spacing:-.035em;line-height:1.3;word-break:keep-all}
+  h2{letter-spacing:-.035em;line-height:1.3;word-break:var(--wb)}
 
   /* ── 히어로: 위 사진 / 아래 검정 ── */
   .hero{padding-block:18px 56px}
@@ -342,7 +357,7 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
           margin-top:44px;padding:18px;border-radius:12px}
   .qr{width:112px;height:112px;padding:7px;border-radius:8px}
   .qrtxt{flex:1 1 auto}
-  .qrtxt h3{font-size:15.5px;margin-bottom:5px;line-height:1.35;word-break:keep-all}
+  .qrtxt h3{font-size:15.5px;margin-bottom:5px;line-height:1.35;word-break:var(--wb)}
   .qrtxt p{font-size:13px;line-height:1.6}
   .qrdl{margin-top:12px;padding:9px 14px;font-size:12.5px}
 
