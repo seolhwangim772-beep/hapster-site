@@ -198,9 +198,12 @@ p{margin:0}
       ⚠️ 그 대가로 ★320px 폰에서는 두 배지가 한 줄에 못 들어가 ★아래로 내려간다.
         ★그게 맞는 동작이다 — 한 줄에 넣으려고 40px 아래로 줄이면 ★애플 규칙 위반이다.
         (내려가도 ★높이는 같고 ★여백도 그대로다. 깨지는 게 아니라 ★쌓이는 것이다)
-   ⇒ ★순서도 바꿨다 — ★애플이 먼저, 구글이 뒤. 위 애플 원문 한 줄 때문이다.
-      ⚠️ 구글 문서에는 ★순서 규칙이 ★없다(크기 규칙만 있다) → 애플 순서를 따라도 구글은 안 어긋난다.
-        ★되돌리고 싶으면 ★마크업 두 곳(히어로·맨 아래)의 a 태그 순서만 바꾸면 된다. CSS 는 안 건드린다.
+   ⇒ ★순서는 ★구글이 먼저, 애플이 뒤다 (★2026-11-07 대표 확정 · 한국 안드로이드 ★70%).
+      ⚠️⚠️ ★위 애플 원문("Place the App Store badge first…")을 ★따르지 않는 ★유일한 항목이다.
+        ★같은 날 그 한 줄을 보고 ★애플을 앞으로 옮겼다가 ★대표가 되돌렸다 —
+        *"★원래 대표가 정해둔 순서를 뒤집은 것이었다. 그게 잘못이다."*
+        ⇒ ★크기·여백·변형 금지는 그대로 지킨다. ★순서만 우리 결정이다. ★다시 뒤집지 마라.
+        (바꾸는 자리는 ★마크업 두 곳의 a 태그 순서뿐이다 — CSS 는 ★안 건드린다. 실제로 그렇게 되돌렸다)
 
    ★★숫자는 ★`--vis` 하나뿐이다 (= ★두 배지의 ★보이는 높이). 여백·캔버스 높이는 ★거기서 파생된다.
      ⚠️⚠️ `--vis` 를 ★`.cta`(부모)에 뒀다 — ★두 배지가 ★한 선언을 나눠 쓴다. 각자 적으면
@@ -444,18 +447,25 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
              ④ 맨 아래 ★GA 사건 판정 — ★href 로 가른다(배지라서 ★글자로는 못 가린다).
                 ⚠️ 여기를 안 고치면 ★버튼은 멀쩡히 눌리고 ★숫자만 0 이 된다. 두 번 겪은 자리다
              ⑤ 짧은 주소 `/ios`·`/android` 의 ★세 겹(meta·보이는 링크·스크립트) — ★다른 파일이다
-           ★★순서 = ★애플이 먼저다. 애플 가이드라인 원문 때문이다 —
-              "Place the App Store badge first in the lineup of badges."(CSS 주석에 전문)
-              ⚠️ 구글 문서에는 ★순서 규칙이 없다 → 애플을 먼저 둬도 구글은 안 어긋난다.
+           ★★★순서 = ★구글(플레이스토어)이 ★먼저다 — 왼쪽. 애플이 오른쪽. (2026-11-07 대표 확정)
+              ★왜: ★한국은 안드로이드가 ★70% 다. ★먼저 보는 자리에 ★플레이스토어가 있어야 한다.
+                이건 ★대표가 원래 정해 둔 순서이고, 바꾼 적이 없는 기본값이다.
+              ⚠️⚠️ ★같은 날 내가 ★한 번 뒤집었다가 ★되돌린 자리다 — 지우지 않고 적어 둔다(철칙 10):
+                애플 가이드라인의 *"Place the App Store badge first in the lineup of badges."* 를 보고
+                ★애플을 앞으로 옮겼다(대표 승인도 받았다). ★그게 잘못이다 —
+                ★남의 가이드라인이 ★우리가 이미 정해 둔 결정을 ★덮을 수는 없다.
+                ⇒ ★다음에 또 그 문장을 보더라도 ★순서를 건드리지 마라. ★시장 점유율이 기준이다.
+              ⚠️ 애플 규칙 중 ★크기·여백·변형 금지는 ★그대로 지킨다(순서만 우리 것이다).
               ⚠️ 클래스 이름은 ★안 바꿨다 — ★`b1`=구글 · ★`b2`=애플 이다(T 표·GA 가 그 이름을 쓴다).
-                ★화면 순서와 이름 순서가 ★다르다. 헷갈리면 ★img 클래스로 봐라(pbadge=구글 · abadge=애플).
+                ★이제 ★화면 순서와 이름 순서가 ★같다(b1 먼저). 헷갈리면 ★img 클래스로 봐라
+                (pbadge=구글 · abadge=애플).
            ⚠️ 옛 APK 파일(hapster.apk · download/hapster.apk)은 ★지우지 않았다 — 뿌려진 옛 주소가 죽는다. -->
-      <a class="b2" href="https://apps.apple.com/kr/app/id6827808995" target="_blank" rel="noopener">
-        <img class="abadge" width="130" height="40"
-             src="badges/apple-ko.svg" alt="App Store에서 다운로드하기"></a>
       <a class="b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
         <img class="pbadge" data-art="192" width="646" height="250"
              src="badges/google-play-ko.png" alt="Google Play에서 다운로드하기"></a>
+      <a class="b2" href="https://apps.apple.com/kr/app/id6827808995" target="_blank" rel="noopener">
+        <img class="abadge" width="130" height="40"
+             src="badges/apple-ko.svg" alt="App Store에서 다운로드하기"></a>
     </div>
     </div>
 
@@ -548,14 +558,14 @@ footer{padding-block:26px;border-top:1px solid var(--line);font-size:12.5px;colo
       오늘 밤, 크루 전원이 <span class="lime">같은 비트</span>로 달립니다.</h2>
     <div class="cta">
       <!-- ★2026-11-07 — 위 히어로 버튼과 ★같이 바꿨다(한쪽만 고치면 아래만 옛 꼴로 남는다).
-           경위·두 회사 규칙·data-art 의 뜻·★애플 먼저인 이유는 ★그 자리 주석에 있다.
-           ⚠️ 여기와 ★글자가 같아야 한다 — 순서까지 같다(애플 → 구글). -->
-      <a class="b2" href="https://apps.apple.com/kr/app/id6827808995" target="_blank" rel="noopener">
-        <img class="abadge" width="130" height="40"
-             src="badges/apple-ko.svg" alt="App Store에서 다운로드하기"></a>
+           경위·두 회사 규칙·data-art 의 뜻·★구글(플레이스토어)이 먼저인 이유는 ★그 자리 주석에 있다.
+           ⚠️ 여기와 ★글자가 같아야 한다 — ★순서까지 같다(구글 → 애플). -->
       <a class="b1" href="https://play.google.com/store/apps/details?id=com.tbic.hapster" target="_blank" rel="noopener">
         <img class="pbadge" data-art="192" width="646" height="250"
              src="badges/google-play-ko.png" alt="Google Play에서 다운로드하기"></a>
+      <a class="b2" href="https://apps.apple.com/kr/app/id6827808995" target="_blank" rel="noopener">
+        <img class="abadge" width="130" height="40"
+             src="badges/apple-ko.svg" alt="App Store에서 다운로드하기"></a>
     </div>
     <div class="contact">
       <span>문의 · 크루 등록 안내</span>
